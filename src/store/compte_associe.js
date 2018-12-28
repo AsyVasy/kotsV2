@@ -7,6 +7,8 @@ export default {
     compte_associe: ["compte_associe"],
     compte_associeUser: ["compte_associeUser"]
   },
+
+
   getters: {
       displayCompte_associe(state) {
     return state.compte_associe
@@ -15,11 +17,15 @@ export default {
     return state.compte_associeUser
   },
   },
+
+
   mutations: {
     setCompteAssocieUser(state, compte_associeUser) {
        state.compte_associeUser = compte_associeUser
    }
   },
+
+  
   actions: {
    
     getCompte_associe(ctx) {

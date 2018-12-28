@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 // import product from "./product";
 import user from "./user";
 import compte_associe from "./compte_associe";
+import user_registered_community from "./user_registered_community";
 import axios from "axios" 
 
 
@@ -12,7 +13,8 @@ export default new Vuex.Store({
   modules: {
     // product,
     user,
-    compte_associe
+    compte_associe,
+    user_registered_community
   },
   state: {
     pseudoReSearch: null,
@@ -22,7 +24,7 @@ export default new Vuex.Store({
     messages: ["messages"],
     // compte_associe: ["compte_associe"],
     hashtag: ["hashtag"],
-    user_registered_community: ["user_registereaasad"],
+    // user_registered_community: ["user_registereaasad"],
     community_has_epic : ["community_has_epic"]
   },
 
@@ -43,9 +45,9 @@ export default new Vuex.Store({
     displayHashtag(state) {
       return state.hashtag
     },
-    displayUser_registered(state) {
-      return state.user_registered_community
-    },
+    // displayUser_registered(state) {
+    //   return state.user_registered_community
+    // },
     displayCommunity_has_epic(state) {
       return state.community_has_epic
     }
@@ -113,15 +115,15 @@ export default new Vuex.Store({
       })
     },
 
-    getUser_registered_community(ctx) {
-      // console.log("ctx", ctx)
-      axios.get("http://localhost:9999/api/v1/user_registered_community").then(res => {
-        ctx.state.user_registered_community = res.data[1];
-        // console.log("resuuuult", res);
-      }).catch(err => {
-        console.log(err);
-      })
-    },
+    // getUser_registered_community(ctx) {
+    //   // console.log("ctx", ctx)
+    //   axios.get("http://localhost:9999/api/v1/user_registered_community").then(res => {
+    //     ctx.state.user_registered_community = res.data[1];
+    //     // console.log("resuuuult", res);
+    //   }).catch(err => {
+    //     console.log(err);
+    //   })
+    // },
     getCommunity_has_epic(ctx) {
       // console.log("ctx", ctx)
       axios.get("http://localhost:9999/api/v1/community_has_epic").then(res => {

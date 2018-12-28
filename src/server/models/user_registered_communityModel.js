@@ -45,23 +45,33 @@ module.exports = function(connection) {
     });
   };
 
-  const get = function getUser_registered_community(clbk, id) {
+  const getAll = function getUser_registered_community(clbk, id) {
     var sql;
 
       sql = "SELECT * FROM `user_registered_community`;";
     
 
     connection.query(sql, [id], (error, results, fields) => {
-      // return console.log(this.sql);
+      console.log(this.sql);
       if (error) return clbk(error, null);
       else return clbk(null, [fields.map(x => x.name), results]);
     });
+  };
+
+  const getByUser = function getUser_registered_community(clbk, id_user) {
+    const sql =  "SELECT * FROM `user_registered_community` WHERE id_user = ?";
+    const q = connection.query(sql, id_user, (err, user_registered_community) => {
+      if (err) return clbk(err, null);
+      return clbk(null, user_registered_community);
+    });
+    console.log(q.sql);
   };
  
   return {
     create,
     remove,
     update,
-    get
+    getAll,
+    getByUser
   };
 };

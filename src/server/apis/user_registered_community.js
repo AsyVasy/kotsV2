@@ -2,6 +2,8 @@ module.exports = (function user_registered_communityAPi() {
   "use strict";
   const express = require("express");
   const router = express.Router();
+  const auth = require("./../utils/auth");
+
 
 
   return function user_registered_communityRouter(db) {
@@ -20,11 +22,18 @@ module.exports = (function user_registered_communityAPi() {
     router.get('/user_registered_community', (req, res) => {
       console.log("ca get");
       
-      user_registered_communityModel.get( (err, dataset) => {
+      user_registered_communityModel.getAll( (err, dataset) => {
         res.send(dataset);
         // console.log("coucou");
         
       }, null);
+    });
+
+    router.get("/user_registered_community/:id", (req, res) => {
+      user_registered_communityModel.getByUser((err, user_registered_community) => {
+        if (err) return res.status(520).send(err);
+        return res.status(200).send(auth.removeSensitiveInfo(user_registered_community));
+      }, req.params.id);
     });
   
     router.delete('/user_registered_community', (req, res) => {

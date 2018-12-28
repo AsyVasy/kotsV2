@@ -63,6 +63,7 @@ export default {
   display: grid;
   grid-template-columns: 160px repeat(5, 1fr);
   grid-template-rows: 32px repeat(5, 1fr);
+  
 }
 #nav_dashboard {
   grid-column: 1 / 2;

@@ -11,16 +11,36 @@
             <hr>
 
             <ul v-for="(compte, m) in compte_associeUser" :key="m">
-                <li>{{m}}: {{compte}}</li>
+                <li> {{compte.name}}</li>
+                <li>{{compte.platform}}</li>
                 <hr>
-            </ul>
-
+            </ul> 
+            <input type="text" placeholder="pseudo" v-model="pseudoReSearch">
+    
+            <br>
+    
+            <select name="plateforme" id="plateforme" v-model="platformResearch">
+    
+                    <option value="pc">PC</option>
+    
+                    <option value="psn">PS4</option>
+    
+                    <option value="xb1">XBOX ONE</option>
+    
+                </select>
+            <button @click="test">TEST</button>
             <hr>
+
        
+
        <h2>MES COMMUNAUTES</h2>
             <hr>
-       <p>blablablablablablablablabla</p>
-            <hr>
+            <ul v-for="(community, o) in communitiesOfUser" :key="o">
+                <li>user: {{community.id_user}}</li>
+                <li>community: {{community.id_community}}</li>
+                <hr>
+            </ul>
+ 
 
     </div>
 </template>
@@ -33,7 +53,40 @@ export default {
 
     data() {
         return {
-            compte_associeUser: {}
+            compte_associeUser: {},
+            communitiesOfUser: {},
+            platformResearch: null,
+            pseudoReSearch: null,
+        }
+    },
+
+    methods: {
+        test() {
+            console.log(this.pseudoReSearch)
+            console.log(this.platformResearch)
+            var self = this
+            axios.post('http://localhost:9999/fortnite', {
+                pseudo: this.pseudoReSearch ,
+                platform: this.platformResearch
+            })
+            .then(function(response) {
+                console.log(response)
+                if (response.data.error || response.data === "error") {
+                    console.log("Ce profil Epic est introuvable, désolé !")
+                    window.alert(`${response.data.epicUserHandle} sur ${response.data.platformName} n'a pas été trouvé.`)
+                    console.log(self.infos.id)
+                } else {
+                    console.log(response.data.epicUserHandle)
+                    console.log(response.data.platformName)
+                    axios.post('http://localhost:9999/api/v1/compte_associe', {
+                        "id_user": self.infos.id,
+                        "id_community": 1,
+                        "name": response.data.epicUserHandle,
+                        "platform": response.data.platformName
+                    })
+                    window.alert(`${response.data.epicUserHandle} sur ${response.data.platformName} a été ajouté.`)
+                }
+            })
         }
     },
     
@@ -44,7 +97,12 @@ export default {
 
         compte_associeCurrentUser() {
             return this.$store.getters["compte_associe/displayCompte_associeUser"]
+        },
+
+        communitiesCurrentUser() {
+            return this.$store.getters["user_registered_community/displayUser_registeredByUser"]
         }
+
 
 
 
@@ -59,6 +117,16 @@ export default {
         }).catch(err => {
           console.log(err);
         })
+
+
+        axios.get(`http://localhost:9999/api/v1/user_registered_community/${this.infos.id}`).then(res => {
+         this.communitiesOfUser = res.data;
+          console.log("resuuuult", res);
+        }).catch(err => {
+          console.log(err);
+        })
+
+
        
     }
 }
@@ -67,6 +135,7 @@ export default {
 <style lang="scss" scoped>
     .dash {
         text-align: left;
+        color: white;
 
         h2 {
             color: white;

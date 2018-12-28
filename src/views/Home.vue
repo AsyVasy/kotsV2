@@ -49,7 +49,7 @@ export default {
 
 #app {
     // width: 100vw;
-    height: 100%;
+    
     background: linear-gradient(rgba(102, 0, 255, 0.9), rgb(204, 0, 255));
 
     .alert {
@@ -58,7 +58,7 @@ export default {
         border-radius: 10px;
         background-color: rgba(51, 51, 51, 0.839);
         width: 95vw;
-        height: 100%;
+        height: 100vh;
         margin: auto;
         overflow: auto;
 

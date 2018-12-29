@@ -1,7 +1,9 @@
 <template>
   <main id="app">
     <Header/>
-    <router-view/>
+    <transition name="moveInUp">
+         <router-view/>
+       </transition>  
     <Footer/>
   </main>
 </template>
@@ -96,5 +98,18 @@ body {
   color: #0c5460;
   background-color: #d1ecf1;
   border-color: #bee5eb;
+}
+
+.moveInUp-enter-active{
+  animation: fadeIn .7s ease-in;
+}
+@keyframes fadeIn{
+  0%{
+    opacity: 0;
+  }
+  
+  100%{
+    opacity: 1;
+  }
 }
 </style>

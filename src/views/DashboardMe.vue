@@ -146,7 +146,14 @@ export default {
 
 
         goCommu(commu) {
-            console.log(commu)
+            var community = {
+                id_community: commu.id_community,
+                id_user: commu.id_user
+            }
+            console.log("commu",commu)
+            this.$ebus.$emit("send-commu", commu)
+
+            // this.$router.push({name:'dashboard-community'})
         }
 
     },
@@ -166,7 +173,12 @@ export default {
         }
         
     },
-
+    updated() {
+this.communitiesOfUser.forEach(element => {
+            console.log(element.id_community);
+              
+        });
+    },
     created() {
         
         axios.get(`http://localhost:9999/api/v1/compte_associe/user/${this.infos.id}`).then(res => {
@@ -179,11 +191,33 @@ export default {
 
         axios.get(`http://localhost:9999/api/v1/user_registered_community/${this.infos.id}`).then(res => {
          this.communitiesOfUser = res.data;
-          console.log("resuuuult", res);
+          console.log("communitiesOfUser", res);
         }).catch(err => {
           console.log(err);
         })
 
+        
+
+        // axios
+        // .get(`http://localhost:9999/api/v1/community/${this.community.id}`)
+        // .then(res => {
+        //     console.log(res)
+        // })
+        
+        
+
+        // axios.get(`http://localhost:9999/api/v1/user_registered_community/${this.infos.id}`).then(res => {
+        //  var communitiesOfUser = [res.data];
+        //     console.log("communitiesOfUser", communitiesOfUser);
+        //     communitiesOfUser.forEach(community => {
+        //     axios
+        //         .get(`http://localhost:9999/api/v1/community/${this.community.id}`)
+        //         .then(res => {
+        //             console.log(res)
+        //         })
+        //     });
+        // }).catch(err => {
+        //   console.log(err);
 
        
     }

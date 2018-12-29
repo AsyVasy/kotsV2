@@ -61,12 +61,24 @@ module.exports = function(connection) {
     });
     console.log(q.sql);
   };
- 
+  
+  
+  const getById = function getCommunityById(clbk, id_community) {
+    const sql = "SELECT * FROM community WHERE id_community = ?";
+    const q = connection.query(sql, id_community, (err, community) => {
+      if (err) return clbk(err, null);
+      return clbk(null, community);
+    });
+    console.log(q.sql);
+  };
+  
+  
   return {
     create,
     remove,
     update,
     get,
-    getByName
+    getByName,
+    getById
   };
 };

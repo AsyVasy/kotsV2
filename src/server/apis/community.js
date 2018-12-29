@@ -35,6 +35,13 @@ module.exports = (function communityAPi() {
         return res.status(200).send(auth.removeSensitiveInfo(community));
       }, req.params.name);
     });
+    
+    router.get("/community/id/:id", (req, res) => {
+      communityModel.getById((err, community) => {
+        if (err) return res.status(520).send(err);
+        return res.status(200).send(auth.removeSensitiveInfo(community));
+      }, req.params.id);
+    });
   
     router.delete('/community', (req, res) => {
       console.log("delete commu");

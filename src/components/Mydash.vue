@@ -1,8 +1,8 @@
 <template>
   <section id="app">
-    <div class="array">
+    <div class="y">
       <div class="left">
-        <Community class="community" v-bind="communityHere"></Community>
+        <Community class="community" v-bind:communityHere='posts'></Community>
       </div>
       
       <div class="rigth">
@@ -36,12 +36,18 @@ export default {
 
   data() {
     return {
-      communityHere: {}
+      posts: [
+        {id_community: 1, name: 'Simplon.co'}
+      ]
     }
   },
-  beforeCreate() {
-      this.communityHere = {id_community: 1, name: 'Simplon.co'}
-    
+
+  created() {
+    this.$ebus.$on("send-commu", param => {
+            this.post = param;
+            this.getStats(1)
+            
+            });
   }
   
 }
@@ -72,7 +78,7 @@ export default {
   }
 
 
-.array {
+.y {
   display: flex;
   justify-content: space-evenly;
   

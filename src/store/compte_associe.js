@@ -5,7 +5,8 @@ export default {
 //   namespaced: true,
   state: {
     compte_associe: ["compte_associe"],
-    compte_associeUser: ["compte_associeUser"]
+    compte_associeUser: ["compte_associeUser"],
+    compte_associeByCommunity: ["compte_associeByCommunity"]
   },
 
 
@@ -15,6 +16,9 @@ export default {
   },
       displayCompte_associeUser(state) {
     return state.compte_associeUser
+  },
+      displayCompte_associeByCommunity(state) {
+    return state.compte_associeByCommunity
   },
   },
 
@@ -30,13 +34,23 @@ export default {
    
     getCompte_associe(ctx) {
         // console.log("ctx", ctx)
-        axios.get("http://localhost:9999/api/v1/compte_associe").then(res => {
+        axios.get("http://localhost:9999/api/v1/compte_associe/community/1").then(res => {
           ctx.state.compte_associe = res.data;
-          console.log("resuuuult", res);
+          console.log("resuuuult", res.data);
         }).catch(err => {
           console.log(err);
         })
-      },
+      }, 
+
+      // getCompte_associeByCommunity(ctx) {
+      //   // console.log("ctx", ctx)
+      //   axios.get(`http://localhost:9999/api/v1/compte_associe/community/1`).then(res => {
+      //     ctx.state.compte_associeByCommunity = res.data;
+      //     console.log("resuuuult", res.data.$value);
+      //   }).catch(err => {
+      //     console.log(err);
+      //   })
+      // },
 
      
         

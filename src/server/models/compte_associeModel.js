@@ -48,7 +48,9 @@ module.exports = function(connection) {
     connection.query(sql, id, (error, results, fields) => {
       // return console.log(this.sql);
       if (error) return clbk(error, null);
-      else return clbk(null, results);
+      else {
+        // console.log("resulttaitaitaitaitiatttttt", results)
+        return clbk(null, results);}
     });
   };
 
@@ -60,12 +62,39 @@ module.exports = function(connection) {
     });
     console.log(q.sql);
   };
+  
+
+  const getByCommunity = function getcompte_associeByUser(clbk, id) {
+    var sql;
+
+      sql = "SELECT * FROM `compte_associe` WHERE id_community = ?";
+    
+
+    connection.query(sql, id, (error, results) => {
+      // return console.log(this.sql);
+      if (error) return clbk(error, null);
+      else {
+        // console.log("resulttttttt", results)
+        return clbk(null, results);}
+    });
+  };
+
+
+  // const getByCommunity = function getcompte_associeByUser(clbk, id_community) {
+  //   const sql = "SELECT * FROM `compte_associe` WHERE id_community = ?";
+  //   const q = connection.query(sql, id_community, (err, compte_associe) => {
+  //     if (err) return clbk(err, null);
+  //     return clbk(null, compte_associe);
+  //   });
+  //   console.log(q.sql);
+  // };
  
   return {
     create,
     remove,
     update,
     getAll,
-    getByUser
+    getByUser,
+    getByCommunity
   };
 };

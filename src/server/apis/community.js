@@ -2,6 +2,8 @@ module.exports = (function communityAPi() {
   "use strict";
   const express = require("express");
   const router = express.Router();
+  const auth = require("./../utils/auth");
+
  
 
   return function  communityRouter(db) {
@@ -25,6 +27,13 @@ module.exports = (function communityAPi() {
         // console.log("coucou");
         
       }, null);
+    });
+
+    router.get("/community/:name", (req, res) => {
+      communityModel.getByName((err, community) => {
+        if (err) return res.status(520).send(err);
+        return res.status(200).send(auth.removeSensitiveInfo(community));
+      }, req.params.name);
     });
   
     router.delete('/community', (req, res) => {

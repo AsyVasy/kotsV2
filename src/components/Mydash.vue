@@ -2,8 +2,7 @@
   <section id="app">
     <div class="array">
       <div class="left">
-        <Community class="community"></Community>
-
+        <Community class="community" v-bind="communityHere"></Community>
       </div>
       
       <div class="rigth">
@@ -33,6 +32,16 @@ export default {
     Chat,
     Profil,
     Selected,
+  },
+
+  data() {
+    return {
+      communityHere: {}
+    }
+  },
+  beforeCreate() {
+      this.communityHere = {id_community: 1, name: 'Simplon.co'}
+    
   }
   
 }

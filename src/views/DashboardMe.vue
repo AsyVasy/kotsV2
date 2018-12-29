@@ -7,10 +7,29 @@
             <hr>
         </ul>
 
+        
+<h2>MES COMMUNAUTES</h2>
+            <hr>
+            <ul v-for="(community, o) in communitiesOfUser" :key="'A'+o">
+                <li>user: {{community.id_user}}</li>
+                <li>community: {{community.id_community}}<button @click="goCommu(community)">GO</button></li>
+                <hr>
+            </ul>
+            <input type="text" placeholder="chercher une communauté" v-model="commuSearch">
+            <button @click="getCommu">COMMU</button>
+            <ul v-if="commuFind">
+                <li>{{commuFind}}</li>
+                <li><button @click="addCommuFind">Ajouté</button></li>
+                <li><button @click="resetCommuFind">Annulax</button></li>
+
+            </ul>
+
+
+
     <h2>MES COMPTES EPIC</h2>
             <hr>
 
-            <ul v-for="(compte, m) in compte_associeUser" :key="m">
+            <ul v-for="(compte, m) in compte_associeUser" :key="'B'+m">
                 <li> {{compte.name}}</li>
                 <li>{{compte.platform}}</li>
                 <hr>
@@ -28,18 +47,12 @@
                     <option value="xb1">XBOX ONE</option>
     
                 </select>
-            <button @click="test">TEST</button>
+            <button @click="getEpic">EPIC</button>
             <hr>
 
        
 
-       <h2>MES COMMUNAUTES</h2>
-            <hr>
-            <ul v-for="(community, o) in communitiesOfUser" :key="o">
-                <li>user: {{community.id_user}}</li>
-                <li>community: {{community.id_community}}</li>
-                <hr>
-            </ul>
+       
  
 
     </div>
@@ -57,11 +70,17 @@ export default {
             communitiesOfUser: {},
             platformResearch: null,
             pseudoReSearch: null,
+            commuSearch: null,
+            commuFind: null
         }
     },
 
     methods: {
-        test() {
+
+
+
+        //Rechercher puis ajouter un compte epic
+        getEpic() {
             console.log(this.pseudoReSearch)
             console.log(this.platformResearch)
             var self = this
@@ -87,8 +106,51 @@ export default {
                     window.alert(`${response.data.epicUserHandle} sur ${response.data.platformName} a été ajouté.`)
                 }
             })
+        },
+
+
+
+
+
+
+        //COMMU
+        getCommu() {            
+            var name = this.commuSearch
+            axios            
+            .get(`http://localhost:9999/api/v1/community/${name}`)
+            .then(res => {
+                console.log(res.data[0])
+                this.commuFind = res.data[0];            })
+            .catch(err => {
+                console.log(err);
+            })      
+        },
+        
+        addCommuFind() {
+            console.log(this.commuFind)
+            axios
+            .post("http://localhost:9999/api/v1/user_registered_community", {
+                "id_user": this.infos.id,
+                "id_community": this.commuFind.id_community
+            })
+            .then(res => {
+                console.log(res)
+                window.alert(`Vous faites maintenant parti de la communauté ${this.commuFind.name} ! Montrez leur qui est le boss..`);
+
+            })
+        },
+
+        resetCommuFind() {
+            this.commuFind = null
+        },
+
+
+        goCommu(commu) {
+            console.log(commu)
         }
+
     },
+    
     
     computed: {
         infos() {
@@ -102,16 +164,12 @@ export default {
         communitiesCurrentUser() {
             return this.$store.getters["user_registered_community/displayUser_registeredByUser"]
         }
-
-
-
-
         
     },
 
     created() {
         
-        axios.get(`http://localhost:9999/api/v1/compte_associe/${this.infos.id}`).then(res => {
+        axios.get(`http://localhost:9999/api/v1/compte_associe/user/${this.infos.id}`).then(res => {
          this.compte_associeUser = res.data;
           console.log("resuuuult", res);
         }).catch(err => {

@@ -52,11 +52,21 @@ module.exports = function(connection) {
       else return clbk(null, [fields.map(x => x.name), results]);
     });
   };
+
+  const getByName = function getCommunityByName(clbk, name) {
+    const sql = "SELECT * FROM community WHERE name = ?";
+    const q = connection.query(sql, name, (err, community) => {
+      if (err) return clbk(err, null);
+      return clbk(null, community);
+    });
+    console.log(q.sql);
+  };
  
   return {
     create,
     remove,
     update,
-    get
+    get,
+    getByName
   };
 };

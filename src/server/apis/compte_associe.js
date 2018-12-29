@@ -45,11 +45,11 @@ module.exports = (function compte_associeAPi() {
       console.log("ca get compte associe");
       
       compte_associeModel.getAll( (err, comptes) => {
-
+        // console.log(comptes)
         solver(comptes).then(finalComptes => {
           console.log("finito")
           res.send(finalComptes)
-          console.log(finalComptes)
+          // console.log(finalComptes)
 
         })
         console.log("compte avec les stats", comptes); 
@@ -59,12 +59,36 @@ module.exports = (function compte_associeAPi() {
 
 
 
-    router.get("/compte_associe/:id", (req, res) => {
+    router.get("/compte_associe/user/:id", (req, res) => {
       compte_associeModel.getByUser((err, compte_associe) => {
         if (err) return res.status(520).send(err);
         return res.status(200).send(auth.removeSensitiveInfo(compte_associe));
       }, req.params.id);
     });
+
+    router.get('/compte_associe/community/:id_community', (req, res) => {
+      console.log("ca get compte associe");
+      
+      compte_associeModel.getAll( (err, comptes) => {
+        // console.log(comptes)
+        solver(comptes).then(finalComptes => {
+          console.log("finito")
+          res.send(finalComptes)
+          console.log(finalComptes)
+
+        })
+        console.log("compte avec les stats", comptes); 
+      }, null);
+    });
+
+    
+    // router.get("/compte_associe/community/:id_community", (req, res) => {
+    //   compte_associeModel.getByCommunity((err, compte_associe) => {
+    //     if (err) return res.status(520).send(err);
+    //     return res.status(200).send(auth.removeSensitiveInfo(compte_associe));
+    //   }, req.params.id_community);
+    // });
+
 
     router.delete('/compte_associe', (req, res) => {
       compte_associeModel.remove((err, dataset) => {

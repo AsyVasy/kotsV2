@@ -33,14 +33,12 @@
         mixins: [Vue2Filters.mixin],
         data() {
             return {
-                communityHere : {
-                    id_community: 1,
-                    name: "Simplon.co",
-                },
+                
                 tabscore: 2
             }
         },
         name: "community",
+        props: ['communityHere'],
         methods: {
             test(epic) {
                 console.log(this.getStats(epic).stat)

@@ -65,12 +65,20 @@ export default new Router({
           component: () =>
             import(/* webpackChunkName: "dashboard" */ "./views/DashboardProductsManager.vue")
         },
+        // {
+        //   name: "dashboard-community",
+        //   path: "manage-community",
+        //   component: () =>
+        //     import(/* webpackChunkName: "dashboard" */ "./views/About.vue")
+        // },
+
         {
-          name: "dashboard-community",
-          path: "manage-community",
-          component: () =>
-            import(/* webpackChunkName: "dashboard" */ "./views/About.vue")
-        }
+        name: "dashboard-community",
+        path: "manage-community/:name",
+        component: () =>
+          import(/* webpackChunkName: "dashboard" */ "./components/Mydash.vue")
+      }
+
       ],
       component: () =>
         import(/* webpackChunkName: "dashboard" */ "./views/Dashboard.vue")

@@ -21,6 +21,7 @@
                 </tr>
             </tbody>
         </table>
+        <button @click="toto">TEST</button>
     </div>
 </template>
 
@@ -40,6 +41,11 @@
         name: "community",
         props: ['communityHere'],
         methods: {
+
+            toto() {
+                console.log(this.communityHere)
+            },
+
             test(epic) {
                 console.log(this.getStats(epic).stat)
             },
@@ -58,7 +64,7 @@
                 return this.$store.getters.displayCommunity;
             },
             compte_associe() {
-                return this.$store.getters.displayCompte_associe;
+                return this.$store.getters.displayCompte_associeByCommunity;
             },
             hashtag() {
                 return this.$store.getters.displayHashtag;
@@ -74,7 +80,7 @@
             this.$store.dispatch("getUsers"),
             this.$store.dispatch("getHashtag"),
             this.$store.dispatch("getcommunity")
-            this.$store.dispatch("getCompte_associe")
+            this.$store.dispatch("getCompte_associeByCommunity")
             this.$store.dispatch("getUser_registered_community") 
             this.$store.dispatch("getCommunity_has_epic")
         }

@@ -67,18 +67,18 @@ module.exports = (function compte_associeAPi() {
     });
 
     router.get('/compte_associe/community/:id_community', (req, res) => {
-      console.log("ca get compte associe");
+      console.log("ca get compte associe par commu");
       
-      compte_associeModel.getAll( (err, comptes) => {
+      compte_associeModel.getByCommunity( (err, comptes) => {
         // console.log(comptes)
         solver(comptes).then(finalComptes => {
           console.log("finito")
           res.send(finalComptes)
-          console.log(finalComptes)
+          // console.log(finalComptes)
 
         })
-        console.log("compte avec les stats", comptes); 
-      }, null);
+        // console.log("compte avec les stats", comptes); 
+      }, req.params.id_community);
     });
 
     

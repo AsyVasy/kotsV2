@@ -32,25 +32,26 @@ export default {
   
   actions: {
    
-    getCompte_associe(ctx) {
+    // getCompte_associe(ctx) {
+    //     // console.log("ctx", ctx)
+    //     axios.get("http://localhost:9999/api/v1/compte_associe").then(res => {
+    //       ctx.state.compte_associe = res.data;
+    //       console.log("getCompte_associe", res.data);
+    //     }).catch(err => {
+    //       console.log(err);
+    //     })
+    //   }, 
+
+      getCompte_associeByCommunity(ctx) {
+        var id = 1;
         // console.log("ctx", ctx)
-        axios.get("http://localhost:9999/api/v1/compte_associe/community/1").then(res => {
-          ctx.state.compte_associe = res.data;
-          console.log("resuuuult", res.data);
+        axios.get(`http://localhost:9999/api/v1/compte_associe/community/${id}`).then(res => {
+          ctx.state.compte_associeByCommunity = res.data;
+          // console.log("resuuuult", res.data.$value);
         }).catch(err => {
           console.log(err);
         })
-      }, 
-
-      // getCompte_associeByCommunity(ctx) {
-      //   // console.log("ctx", ctx)
-      //   axios.get(`http://localhost:9999/api/v1/compte_associe/community/1`).then(res => {
-      //     ctx.state.compte_associeByCommunity = res.data;
-      //     console.log("resuuuult", res.data.$value);
-      //   }).catch(err => {
-      //     console.log(err);
-      //   })
-      // },
+      },
 
      
         

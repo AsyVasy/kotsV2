@@ -59,7 +59,7 @@ module.exports = function(connection) {
   };
 
   const getByUser = function getUser_registered_community(clbk, id_user) {
-    const sql =  "SELECT * FROM `user_registered_community` WHERE id_user = ?";
+    const sql =  "SELECT * FROM `user_registered_community` INNER JOIN `community` WHERE community.id_community = user_registered_community.id_community AND user_registered_community.id_user = 24";
     const q = connection.query(sql, id_user, (err, user_registered_community) => {
       if (err) return clbk(err, null);
       return clbk(null, user_registered_community);

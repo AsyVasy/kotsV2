@@ -2,7 +2,7 @@
   <section id="app">
     <div class="y">
       <div class="left">
-        <Community class="community" v-bind:communityHere='posts'></Community>
+        <Community class="community" v-bind:communityHere='this.$route.params.commu'></Community>
       </div>
       
       <div class="rigth">
@@ -12,7 +12,7 @@
 
         </div>
         <Selected class="select"></Selected>
-
+        <button @click="coucou">COUCOU</button>
       </div>
 
     </div>
@@ -37,18 +37,16 @@ export default {
   data() {
     return {
       posts: [
-        {id_community: 1, name: 'Simplon.co'}
+        {}
       ]
     }
   },
 
-  created() {
-    this.$ebus.$on("send-commu", param => {
-            this.post = param;
-            this.getStats(1)
-            
-            });
-  }
+  methods: {
+    coucou() {
+      console.log(this.$route.params.commu)
+    }
+  },
   
 }
 </script>

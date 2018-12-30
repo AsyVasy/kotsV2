@@ -11,8 +11,10 @@
 <h2>MES COMMUNAUTES</h2>
             <hr>
             <ul v-for="(community, o) in communitiesOfUser" :key="'A'+o">
-                <li>user: {{community.id_user}}</li>
-                <li>community: {{community.id_community}}<button @click="goCommu(community)">GO</button></li>
+                <!-- <li>me: {{community.id_user}}</li> -->
+                <li>name: {{community.name}}</li>
+                <li>id community: {{community.id_community}}<button @click="goCommu(community)">GO</button></li>
+                <li>id creator: {{community.user_id}}</li>
                 <hr>
             </ul>
             <input type="text" placeholder="chercher une communauté" v-model="commuSearch">
@@ -146,14 +148,12 @@ export default {
 
 
         goCommu(commu) {
-            var community = {
-                id_community: commu.id_community,
-                id_user: commu.id_user
-            }
-            console.log("commu",commu)
-            this.$ebus.$emit("send-commu", commu)
-
-            // this.$router.push({name:'dashboard-community'})
+            
+            // this.$ebus.$emit("send-commu", commu)
+            console.log("send commu from dashme");
+            
+            var commuName = commu.name
+            this.$router.push({name:'dashboard-community', params: {commu: commu, name: commuName }})
         }
 
     },
@@ -173,17 +173,12 @@ export default {
         }
         
     },
-    updated() {
-this.communitiesOfUser.forEach(element => {
-            console.log(element.id_community);
-              
-        });
-    },
+    
     created() {
         
         axios.get(`http://localhost:9999/api/v1/compte_associe/user/${this.infos.id}`).then(res => {
          this.compte_associeUser = res.data;
-          console.log("resuuuult", res);
+          console.log("compte_associeUser", res.data);
         }).catch(err => {
           console.log(err);
         })
@@ -193,10 +188,8 @@ this.communitiesOfUser.forEach(element => {
          this.communitiesOfUser = res.data;
           console.log("communitiesOfUser", res);
         }).catch(err => {
-          console.log(err);
-        })
-
-        
+          console.log(err);              
+        });
 
         // axios
         // .get(`http://localhost:9999/api/v1/community/${this.community.id}`)

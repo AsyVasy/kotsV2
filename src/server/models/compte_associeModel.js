@@ -64,19 +64,20 @@ module.exports = function(connection) {
   };
   
 
-  const getByCommunity = function getcompte_associeByUser(clbk, id) {
+  const getByCommunity = function getcompte_associeByUser(clbk, id_community) {
     var sql;
 
       sql = "SELECT * FROM `compte_associe` WHERE id_community = ?";
     
 
-    connection.query(sql, id, (error, results) => {
+    const q = connection.query(sql, id_community, (error, results) => {
       // return console.log(this.sql);
       if (error) return clbk(error, null);
       else {
         // console.log("resulttttttt", results)
         return clbk(null, results);}
     });
+    console.log(q.sql)
   };
 
 

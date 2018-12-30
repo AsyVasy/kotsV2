@@ -42,8 +42,7 @@ export default {
     //     })
     //   }, 
 
-      getCompte_associeByCommunity(ctx) {
-        var id = 1;
+      getCompte_associeByCommunity(ctx, id) {
         // console.log("ctx", ctx)
         axios.get(`http://localhost:9999/api/v1/compte_associe/community/${id}`).then(res => {
           ctx.state.compte_associeByCommunity = res.data;

@@ -80,7 +80,7 @@
             this.$store.dispatch("getUsers"),
             this.$store.dispatch("getHashtag"),
             this.$store.dispatch("getcommunity")
-            this.$store.dispatch("getCompte_associeByCommunity")
+            this.$store.dispatch("getCompte_associeByCommunity", this.communityHere.id_community)
             this.$store.dispatch("getUser_registered_community") 
             this.$store.dispatch("getCommunity_has_epic")
         }

@@ -71,6 +71,15 @@ module.exports = function(connection) {
     });
     console.log(q.sql);
   };
+
+  const getByTag = function getCommunityByTag(clbk, hashtag) {
+    const sql =  "SELECT * FROM `community` INNER JOIN `community_has_hashtag` WHERE community.id_community = community_has_hashtag.id_community AND community_has_hashtag.hashtag = ?";
+    const q = connection.query(sql, hashtag, (err, user_registered_community) => {
+      if (err) return clbk(err, null);
+      return clbk(null, user_registered_community);
+    });
+    console.log(q.sql);
+  };
   
   
   return {
@@ -79,6 +88,7 @@ module.exports = function(connection) {
     update,
     get,
     getByName,
-    getById
+    getById,
+    getByTag
   };
 };

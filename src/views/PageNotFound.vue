@@ -1,6 +1,7 @@
 <template>
     <section class="page notfound">
         <h1 class="title">page not found papy :/</h1>
+        
     </section>
 </template>
 

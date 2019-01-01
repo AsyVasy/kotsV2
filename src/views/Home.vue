@@ -2,9 +2,18 @@
   <section id="app">
      <div class="alert">
        <h2>Bienvenue sur King Of The Stats !</h2>
-       <p class="intro">EXPLICATION DU SITE CONCEPT ET POURQUOI IL FAUT S INSCRIRE</p>
-      <input type="search" placeholder="Rechercher une communauté ou un profil epic">
-     <router-link to="/about"><h2>dashboard</h2></router-link>
+       <p class="intro">Tu aimes avoir un oeil sur tes statistiques lorsque tu joues à Fortnite ? Tu aimes te comparer avec tes amis, tes rivaux ou des joueurs pro ? Crée une communauté dans laquelle tu pourras y ajouter tous les comptes Epic pour avoir un classement de tous les joueurs que tu veux ! Tu peux aussi rejoindre une communauté déjà créee ou simplement la consulter à toi de voir !</p>
+      <input type="search" placeholder="Rechercher une communauté ou un profil epic" v-model="commuSearch">
+      <button @click="searchCommu">Rechercher</button>
+      <h2 v-if="commuFind">
+        <ul v-for="(commu, n) in commuFind" :key="n">
+          <li class="clicable" @click="goCommu(commu)">{{commu.name}}
+            </li></ul></h2>
+                    <br>
+                    <router-link class="visibility" to="/login"> Déjà membre ? Clic pour te connecter.</router-link>
+                    <br>
+        <router-link class="visibility" to="/register"> Pas encore membre ? Clic pour t'enregistrer.</router-link>
+
     
     
     
@@ -17,7 +26,39 @@
 
 
 <script>
+import axios from 'axios'
+
 export default {
+  data() {
+    return {
+      commuSearch: "",
+      commuFind: null
+    }
+  },
+
+  methods: {
+    searchCommu() {
+      console.log(this.commuSearch);
+      var tag = this.commuSearch
+            axios            
+            .get(`http://localhost:9999/api/v1/community/hashtag/${tag}`)
+            .then(res => {
+                console.log(res.data)
+                this.commuFind = res.data;            })
+            .catch(err => {
+                console.log(err);
+            }) 
+    },
+
+    goCommu(commu) {
+            
+            // this.$ebus.$emit("send-commu", commu)
+            console.log("send commu from dashme");
+            
+            var commuName = commu.name
+            this.$router.push({name:'dashboard-community', params: {commu: commu, name: commuName }})
+        }
+  }
  
   
 }
@@ -69,18 +110,27 @@ export default {
           color: white
           
         }
-
+        .clicable:hover {
+          cursor: pointer;
+          color: #7619FF;
+          background: rgba( 7, 7, 7, 0.5);
+          transition: .5s
+        }
         .intro {
-          width: 250px
+          width: 550px;
+          font-size: 30px;
+margin: auto
         }
 
         input {
-          width: auto
+          width: auto;
+          height: 30px
         }
 
-        router-link {
+       .visibility {
            font-family: 'Burbank Big Condensed';
           font-size: 30px;
+          color: white
         }
     
     

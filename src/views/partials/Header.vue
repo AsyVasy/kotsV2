@@ -16,7 +16,7 @@
           to="/"
           exact
         >Home</router-link>
-        <router-link
+        <!-- <router-link
           exact-active-class="is-selected"
           class="clickable item"
           tag="li"
@@ -29,7 +29,7 @@
           tag="li"
           to="/contact"
           exact
-        >Contact</router-link>
+        >Contact</router-link> -->
       </ul>
     </nav>
     <i id="burger" class="clickable fas fa-bars"></i>

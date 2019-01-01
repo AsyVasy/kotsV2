@@ -29,7 +29,7 @@ module.exports = (function communityAPi() {
       }, null);
     });
 
-    router.get("/community/:name", (req, res) => {
+    router.get("/community/name/:name", (req, res) => {
       communityModel.getByName((err, community) => {
         if (err) return res.status(520).send(err);
         return res.status(200).send(auth.removeSensitiveInfo(community));
@@ -41,6 +41,13 @@ module.exports = (function communityAPi() {
         if (err) return res.status(520).send(err);
         return res.status(200).send(auth.removeSensitiveInfo(community));
       }, req.params.id);
+    });
+
+    router.get("/community/hashtag/:hashtag", (req, res) => {
+      communityModel.getByTag((err, community) => {
+        if (err) return res.status(520).send(err);
+        return res.status(200).send(auth.removeSensitiveInfo(community));
+      }, req.params.hashtag);
     });
   
     router.delete('/community', (req, res) => {

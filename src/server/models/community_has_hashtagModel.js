@@ -57,11 +57,21 @@ module.exports = function(connection) {
       else return clbk(null, [fields.map(x => x.name), results]);
     });
   };
+
+  // const getByHashtag = function getcommunity_has_hashtagByHashtag(clbk, hashtag) {
+  //   const sql =  "SELECT * FROM `community_has_hashtag` INNER JOIN `community` WHERE community.id_community = user_registered_community.id_community AND user_registered_community.id_user = 24";
+  //   const q = connection.query(sql, hashtag, (err, user_registered_community) => {
+  //     if (err) return clbk(err, null);
+  //     return clbk(null, user_registered_community);
+  //   });
+  //   console.log(q.sql);
+  // };
  
   return {
     create,
     remove,
     update,
-    get
+    get,
+    // getByHashtag
   };
 };

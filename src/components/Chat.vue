@@ -1,20 +1,22 @@
 <template>
     <div class="chat">
-        <h2>Chat</h2>
-        <div class="conversation">
+        <h2 class="title">Chat</h2>
+        <div class="conversation" >
+            <!-- <h2>{{communityHere}}</h2> -->
             <ul v-for="(message, p) in messages" :key="p">
-                <li class="message" v-if="message.id_community === 1">{{message.message}}</li>
-                <li class="sender" v-if="message.id_community === 1">{{message.id_user}}</li>
+                <li class="message" >{{message.message}}</li>
+                <li class="sender"   > {{message.name}}</li>
             </ul>
         </div>
         <form action="/search">
-            <input type="text">
-            <button type="submit" @click.stop.prevent="submit()">Envoyer</button>
+            <input type="text" maxlength="100" v-model="messageToSubmit"> 
+            <button type="submit" @click.stop.prevent="submit">Envoyer</button>
         </form>
     </div>
 </template>
 
 <script>
+import axios from "axios"
 export default {
     // sockets: {
     //     connect: function () {
@@ -24,23 +26,50 @@ export default {
     //         console.log('this method was fired by the socket server. eg: io.emit("customEmit", data)')
     //     }
     // },
+    data() {
+        return {
+            messageToSubmit: ""
+        }
+    },
+    name: "chat",
+
+    props: ['communityHere'],
+
     methods: {
-        clickButton: function (data) {
-            // $socket is socket.io-client instance
-            this.$socket.emit('emit_method', data)
-        },
+        submit() {
+            axios.post("http://localhost:9999/api/v1/message",{
+                "message" : this.messageToSubmit ,
+                "id_user" : this.infos.id,
+                "id_community" : this.communityHere.id_community
+            })
+            .then(res => {
+                console.log(res);
+                 
+                  this.$store.dispatch("getMessagesByCommunity", this.communityHere.id_community)
+            
+
+            }
+            )
+            
+        }
+    
         
         
     },
+ 
     
     computed: {
         messages() {
-                return this.$store.getters.displayMessages;
+                return this.$store.getters.displayMessagesByCommunity;
             },
+            infos() {
+            return this.$store.getters["user/current"]
+        },
         
     },
     created() {
-        this.$store.dispatch("getMessages")
+        this.$store.dispatch("getMessagesByCommunity", this.communityHere.id_community)
+
     }
 }
 </script>
@@ -55,16 +84,25 @@ export default {
     /* Track */
     ::-webkit-scrollbar-track {
         background: #f1f1f1; 
+        border-radius: 10px
+
     }
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
         background: #888; 
+        border-radius: 10px
+
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
         background: #555; 
+    }
+
+    .title {
+                                font-family: 'Burbank Big Condensed';
+
     }
     .chat {
         margin: 20px 0px 0px 0px;
@@ -72,7 +110,6 @@ export default {
         background-color: rgba(51, 51, 51, 0.839);
         width: 300px;
         height: 300px;
-        font-family: 'Burbank Big Condensed';
         color: white;
         // overflow: auto;
         .conversation {
@@ -87,12 +124,13 @@ export default {
             list-style: none;
             cursor: pointer;
             .message {
+                font-family: 'Burbank Big Condensed';
                 background: #999999;
                 border-radius: 10px;
                 margin: 0 15px 0 15px;
                 height: auto;
                 padding: 5px 0 5px 0;
-            font-size: 20px
+                font-size: 20px
             }
             .sender {
                 font-size: 10px;

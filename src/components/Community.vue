@@ -11,7 +11,7 @@
                     <th>Platforme</th>
                 </tr>
             </thead>
-            <tbody>       
+            <tbody class="board">       
                 <tr v-for="(epic, n) in orderBy(compte_associe, 'score', -1)" :key="n" >
                     <td>#{{n + 1}}</td>
                     <td @click="setUser(epic)">{{epic.name}}</td>
@@ -88,6 +88,33 @@
 </script>
 
 <style lang="scss" scoped>
+
+     /* width */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        border-radius: 10px
+
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888; 
+        border-radius: 10px
+
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+
+    }
+
+
     .commu {
         color: white;
         // margin: 20px 0px 0px 110px;

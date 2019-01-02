@@ -26,14 +26,15 @@ module.exports = (function  messageAPi() {
     });
     
     
-    router.get('/message/commu', (req, res) => {
-      console.log("ca get");
+   
+
+    router.get('/message/commu/:id_community', (req, res) => {
+      console.log("ca get chat par commu");
       
-      messageModel.getDiscuss( (err, dataset) => {
-        res.send(dataset);
-        // console.log("coucou");
-        
-      }, null);
+      messageModel.getChatByCommunity( (err, chat) => {
+        res.send(chat);
+      }, 
+      req.params.id_community);
     });
   
     router.delete('/message', (req, res) => {

@@ -7,7 +7,7 @@
       
       <div class="rigth">
         <div class="top">
-          <Chat class="chat"></Chat> 
+          <Chat class="chat" v-bind:communityHere='this.$route.params.commu'></Chat> 
           <Profil class="profil" ></Profil>
 
         </div>
@@ -34,13 +34,6 @@ export default {
     Selected,
   },
 
-  data() {
-    return {
-      posts: [
-        {}
-      ]
-    }
-  },
 
   methods: {
     coucou() {

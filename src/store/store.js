@@ -5,6 +5,7 @@ import user from "./user";
 import compte_associe from "./compte_associe";
 import user_registered_community from "./user_registered_community";
 import community from "./community";
+import message from "./message";
 import axios from "axios" 
 
 
@@ -16,14 +17,15 @@ export default new Vuex.Store({
     user,
     compte_associe,
     user_registered_community,
-    community
+    community,
+    message
   },
   state: {
     pseudoReSearch: null,
     platformResearch: null,
     users: ["user"],
     // community: ["communautés"],
-    messages: ["messages"],
+    // messages: ["messages"],
     // compte_associe: ["compte_associe"],
     hashtag: ["hashtag"],
     // user_registered_community: ["user_registereaasad"],
@@ -38,9 +40,9 @@ export default new Vuex.Store({
     // displayCommunity(state) {
     //   return state.community
     // },
-    displayMessages(state) {
-      return state.messages
-    },
+    // displayMessages(state) {
+    //   return state.messages
+    // },
     // displayCompte_associe(state) {
     //   return state.compte_associe
     // },
@@ -85,15 +87,15 @@ export default new Vuex.Store({
     //   })
     // },
 
-    getMessages(ctx) {
-      // console.log("ctx", ctx)
-      axios.get("http://localhost:9999/api/v1/message").then(res => {
-        ctx.state.messages = res.data[1];
-        // console.log("resuuuult", res.data[1]);
-      }).catch(err => {
-        console.log(err);
-      })
-    },
+    // getMessages(ctx) {
+    //   // console.log("ctx", ctx)
+    //   axios.get("http://localhost:9999/api/v1/message").then(res => {
+    //     ctx.state.messages = res.data[1];
+    //     // console.log("resuuuult", res.data[1]);
+    //   }).catch(err => {
+    //     console.log(err);
+    //   })
+    // },
 
     // getCompte_associe(ctx) {
     //   // console.log("ctx", ctx)

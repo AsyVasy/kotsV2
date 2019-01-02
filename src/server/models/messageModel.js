@@ -54,17 +54,22 @@ module.exports = function(connection) {
     });
   };
   
-  const getDiscuss = function getDiscuss(clbk, id) {
+
+
+  const getChatByCommunity = function getDiscuss(clbk, id_community) {
     var sql;
 
-      sql = "SELECT * FROM message WHERE id_community = ?;";
+      sql = "SELECT * FROM message INNER JOIN users WHERE message.id_user = users.id AND id_community = ?;";
     
-    id = 1;
-    connection.query(sql, [id], (error, results, fields) => {
+
+    const q = connection.query(sql, id_community, (error, results) => {
       // return console.log(this.sql);
       if (error) return clbk(error, null);
-      else return clbk(null, [fields.map(x => x.name), results]);
+      else {
+        // console.log("resulttttttt", results)
+        return clbk(null, results);}
     });
+    console.log(q.sql)
   };
   
 
@@ -73,6 +78,6 @@ module.exports = function(connection) {
     remove,
     update,
     get,
-    getDiscuss
+    getChatByCommunity
    };
 };

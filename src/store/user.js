@@ -5,7 +5,8 @@ export default {
   namespaced: true,
   state: {
     users: [],
-    user: null
+    user: null,
+    userLookingFor: null
   },
   getters: {
     all(state) {
@@ -13,6 +14,9 @@ export default {
     },
     current(state) {
       return state.user;
+    },
+    getUser(state) {
+      return state.userLookingFor
     }
   },
   mutations: {
@@ -43,6 +47,18 @@ export default {
           });
       });
     },
+
+    // getUserLookingFor(ctx, id) {
+    //   // console.log("ctx", ctx)
+    //   axios.get(`http://localhost:9999/api/v1/user/${id}`).then(res => {
+    //     ctx.state.userLookingFor = res.data;
+    //     // console.log("resuuuult", res.data.$value);
+    //   }).catch(err => {
+    //     console.log(err);
+    //   })
+    // },
+
+
     getAll(context) {
       return new Promise((resolve, reject) => {
         axios

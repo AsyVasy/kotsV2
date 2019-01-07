@@ -50,7 +50,7 @@ export default {
 
     // getUserLookingFor(ctx, id) {
     //   // console.log("ctx", ctx)
-    //   axios.get(`http://localhost:9999/api/v1/user/${id}`).then(res => {
+    //   axios.get(`http://localhost:8080/api/v1/user/${id}`).then(res => {
     //     ctx.state.userLookingFor = res.data;
     //     // console.log("resuuuult", res.data.$value);
     //   }).catch(err => {
@@ -79,7 +79,7 @@ export default {
               resolve(res);
               
           }).catch(err => {
-              console.log(err);
+              // console.log(err);
               reject(err);
             });
         });

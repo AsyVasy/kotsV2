@@ -37,7 +37,7 @@ export default {
 
     methods: {
         submit() {
-            axios.post("http://localhost:9999/api/v1/message",{
+            axios.post("http://localhost:8080/api/v1/message",{
                 "message" : this.messageToSubmit ,
                 "id_user" : this.infos.id,
                 "id_community" : this.communityHere.id_community
@@ -125,7 +125,7 @@ export default {
             cursor: pointer;
             .message {
                 font-family: 'Burbank Big Condensed';
-                background: #999999;
+                background: #808099;
                 border-radius: 10px;
                 margin: 0 15px 0 15px;
                 height: auto;

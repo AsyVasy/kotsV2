@@ -2,8 +2,8 @@
   <main id="app">
     <Header/>
     <transition name="moveInUp">
-         <router-view/>
-       </transition>  
+      <router-view/>
+    </transition>  
     <Footer/>
   </main>
 </template>
@@ -20,6 +20,29 @@ export default {
 </script>
 
 <style lang="scss">
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
 * {
   box-sizing: border-box;
 }
@@ -32,8 +55,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  // overflow-y: hidden;
   min-height: 100vh;
-  max-height: 100vh;
+  // max-height: 100vh;
+  max-width: 100vw;
   
   display: grid;
   grid-template-rows: 70px 1fr 150px;

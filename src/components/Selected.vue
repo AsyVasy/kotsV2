@@ -60,7 +60,7 @@
 
             getStats(checking) {
                 var self = this;
-                axios.post('http://localhost:9999/fortnite', {
+                axios.post('http://localhost:8080/fortnite', {
                     pseudo: this.epic.name ,
                     platform: this.epic.platform
                 })

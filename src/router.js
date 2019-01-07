@@ -14,15 +14,15 @@ export default new Router({
       name: "home",
       component: Home
     },
-    {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
-    },
+    // {
+    //   path: "/about",
+    //   name: "about",
+    //   // route level code-splitting
+    //   // this generates a separate chunk (about.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () =>
+    //     import(/* webpackChunkName: "about" */ "./views/About.vue")
+    // },
     {
       path: "/login",
       name: "login",
@@ -53,18 +53,18 @@ export default new Router({
           component: () =>
             import(/* webpackChunkName: "dashboard-me" */ "./views/DashboardMe.vue")
         },
-        {
-          name: "user-manager",
-          path: "manage-users",
-          component: () =>
-            import(/* webpackChunkName: "dashboard-users" */ "./views/DashboardUsersManager.vue")
-        },
-        {
-          name: "user-products",
-          path: "manage-products",
-          component: () =>
-            import(/* webpackChunkName: "dashboard" */ "./views/DashboardProductsManager.vue")
-        },
+        // {
+        //   name: "user-manager",
+        //   path: "manage-users",
+        //   component: () =>
+        //     import(/* webpackChunkName: "dashboard-users" */ "./views/DashboardUsersManager.vue")
+        // },
+        // {
+        //   name: "user-products",
+        //   path: "manage-products",
+        //   component: () =>
+        //     import(/* webpackChunkName: "dashboard" */ "./views/DashboardProductsManager.vue")
+        // },
         // {
         //   name: "dashboard-community",
         //   path: "manage-community",

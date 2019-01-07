@@ -177,7 +177,7 @@
                 background: #993399;
             }
             tbody > tr:nth-child(3) > td:nth-child(1) {
-                background: #009999;
+                background: #008080;
 
             }
             tbody > tr:nth-child(4) > td:nth-child(1) {
@@ -185,7 +185,7 @@
 
             }
             tbody > tr:nth-child(n + 5) > td:nth-child(1) {
-                background: #999999;
+                background: #808099;
 
             }
             

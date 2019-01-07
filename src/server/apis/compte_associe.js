@@ -23,7 +23,7 @@ module.exports = (function compte_associeAPi() {
         var finished = 0;
         var regex = /,/gi;
         comptes.forEach(compte => {
-          axios.post('http://localhost:9999/fortnite', {
+          axios.post('http://localhost:8080/fortnite', {
                     pseudo: compte.name,
                     platform: compte.platform
                 })

@@ -30,7 +30,7 @@ export default {
    
     getUser_registered_community(ctx) {
       // console.log("ctx", ctx)
-      axios.get("http://localhost:9999/api/v1/user_registered_community").then(res => {
+      axios.get("http://localhost:8080/api/v1/user_registered_community").then(res => {
         ctx.state.user_registered_community = res.data[1];
         // console.log("resuuuult", res);
       }).catch(err => {
@@ -44,7 +44,7 @@ export default {
       //   return new Promise((resolve, reject) => {
           
       //     axios
-      //     .post("http://localhost:9999/api/v1/compte_associe/:id", {
+      //     .post("http://localhost:8080/api/v1/compte_associe/:id", {
       //       user
       //     })
       //     .then(res => {

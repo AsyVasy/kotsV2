@@ -1,21 +1,15 @@
 <template>
   <section id="app">
-    <div class="y">
-      <div class="left">
+      <div class="tab">
         <Community class="community" v-bind:communityHere='this.$route.params.commu'></Community>
-      </div>
       
-      <div class="rigth">
-        <div class="top">
+    
           <Chat class="chat" v-bind:communityHere='this.$route.params.commu'></Chat> 
-          <Profil class="profil" ></Profil>
+          <!-- <Profil class="profil" ></Profil> -->
 
-        </div>
         <Selected class="select"></Selected>
-        <button @click="coucou">COUCOU</button>
-      </div>
 
-    </div>
+</div>
 
   </section>
 </template>
@@ -69,15 +63,10 @@ export default {
   }
 
 
-.y {
+.tab {
   display: flex;
   justify-content: space-evenly;
-  
-
-
-  .top {
-    display: flex;
-  }
+  flex-wrap: wrap;
 }
 
   

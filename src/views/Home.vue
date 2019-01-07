@@ -1,24 +1,32 @@
 <template>
   <section id="app">
-     <div class="alert">
-       <h2>Bienvenue sur King Of The Stats !</h2>
-       <p class="intro">Tu aimes avoir un oeil sur tes statistiques lorsque tu joues à Fortnite ? Tu aimes te comparer avec tes amis, tes rivaux ou des joueurs pro ? Crée une communauté dans laquelle tu pourras y ajouter tous les comptes Epic pour avoir un classement de tous les joueurs que tu veux ! Tu peux aussi rejoindre une communauté déjà créee ou simplement la consulter à toi de voir !</p>
-      <input type="search" placeholder="Rechercher une communauté ou un profil epic" v-model="commuSearch">
-      <button @click="searchCommu">Rechercher</button>
+
+
+
+    <div class="alert">
+        <h2>Bienvenue sur King Of The Stats !</h2>
+      <div class="global">
+      <div class="text">
+        <p class="intro">Tu aimes avoir un oeil sur tes statistiques lorsque tu joues à Fortnite ? Tu aimes te comparer avec tes amis, tes rivaux ou des joueurs pro ? Crée une communauté dans laquelle tu pourras y ajouter tous les comptes Epic pour avoir un classement de tous les joueurs que tu veux ! Tu peux aussi rejoindre une communauté déjà créee ou simplement la consulter à toi de voir !</p>
+        <router-link class="visibility" to="/login"> Déjà membre ? Clic pour te connecter.</router-link>
+        <router-link class="visibility" to="/register"> Pas encore membre ? Clic pour t'enregistrer.</router-link>  
+      </div>
+
+
+
+      <div class="search">
+        <h3>Rechercher une communauté: </h3>
+       <input type="search"  v-model="commuSearch">
+        <button type="submit" @click="searchCommu"><i class="fa fa-search"></i></button>
       <h2 v-if="commuFind">
         <ul v-for="(commu, n) in commuFind" :key="n">
           <li class="clicable" @click="goCommu(commu)">{{commu.name}}
-            </li></ul></h2>
-                    <br>
-                    <router-link class="visibility" to="/login"> Déjà membre ? Clic pour te connecter.</router-link>
-                    <br>
-        <router-link class="visibility" to="/register"> Pas encore membre ? Clic pour t'enregistrer.</router-link>
-
-    
-    
-    
-    
-     </div>
+          </li>
+        </ul>
+      </h2>
+      </div>
+    </div>
+    </div>
      
 
   </section>
@@ -41,7 +49,7 @@ export default {
       console.log(this.commuSearch);
       var tag = this.commuSearch
             axios            
-            .get(`http://localhost:9999/api/v1/community/hashtag/${tag}`)
+            .get(`http://localhost:8080/api/v1/community/hashtag/${tag}`)
             .then(res => {
                 console.log(res.data)
                 this.commuFind = res.data;            })
@@ -89,19 +97,23 @@ export default {
   }
 
 #app {
-    // width: 100vw;
+    width: 100vw;
     
     background: linear-gradient(rgba(102, 0, 255, 0.9), rgb(204, 0, 255));
+
+
+    
 
     .alert {
         color: white;
         // margin: 20px 0px 0px 110px;
         border-radius: 10px;
         background-color: rgba(51, 51, 51, 0.839);
-        width: 95vw;
-        height: 100vh;
-        margin: auto;
-        overflow: auto;
+        width: 90vw;
+        height: 90vh;
+        margin-left: 65px;
+        margin-top: 10px;
+        // overflow: auto;
 
         h2 {
           font-family: 'Burbank Big Condensed';
@@ -110,6 +122,27 @@ export default {
           color: white
           
         }
+
+    .global {
+        margin-top: 100px;
+        display: flex;
+        justify-content: space-evenly;
+        
+
+
+        .text {
+          display: flex;
+          flex-direction: column;
+          
+        }
+
+        .search {
+          ul {
+            list-style: none;
+          }
+        }
+
+
         .clicable:hover {
           cursor: pointer;
           color: #7619FF;
@@ -117,14 +150,14 @@ export default {
           transition: .5s
         }
         .intro {
-          width: 550px;
-          font-size: 30px;
-margin: auto
+          width: 450px;
+          font-size: px;
+          margin-bottom: 40px
         }
 
         input {
           width: auto;
-          height: 30px
+          
         }
 
        .visibility {
@@ -134,6 +167,9 @@ margin: auto
         }
     
     
+    }
+
+
     }
  
   }

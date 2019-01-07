@@ -4,10 +4,10 @@
         <ul>
             <li>Récupérer un nouveau profil EpicGame</li>
             <li>Retirer un profil EpicGame</li>
-            <li>--------------------------</li>
+            <!-- <li>--------------------------</li>
             <li>Créer une communauté </li>
             <li>Gérer une communauté</li>
-            <li>Quitter une communauté</li>
+            <li>Quitter une communauté</li> -->
         </ul>
     </div>
 </template>
@@ -44,7 +44,7 @@
 
             li:hover {
 
-                background: rgba(#999999, 0.3);
+                background: rgba(#808099, 0.3);
                 transition: .2s;
                 cursor: pointer;
             }

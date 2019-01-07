@@ -23,7 +23,7 @@ export default {
 
     getMessages(ctx) {
         // console.log("ctx", ctx)
-        axios.get("http://localhost:9999/api/v1/message").then(res => {
+        axios.get("http://localhost:8080/api/v1/message").then(res => {
           ctx.state.messages = res.data[1];
           // console.log("resuuuult", res.data[1]);
         }).catch(err => {
@@ -35,7 +35,7 @@ export default {
 
       getMessagesByCommunity(ctx, id) {
         // console.log("ctx", ctx)
-        axios.get(`http://localhost:9999/api/v1/message/commu/${id}`).then(res => {
+        axios.get(`http://localhost:8080/api/v1/message/commu/${id}`).then(res => {
           ctx.state.messageByCommunity = res.data;
           // console.log("resuuuult", res.data.$value);
         }).catch(err => {

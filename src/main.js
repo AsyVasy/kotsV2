@@ -7,7 +7,7 @@ import axiosConfig from "./axios.config";
 Vue.config.productionTip = false
 
 Vue.prototype.$ebus = new Vue();
-Vue.prototype.$backendURL = "http://localhost:9999";
+Vue.prototype.$backendURL = "http://localhost:8080";
 
 Window.prototype.log =  (...args) => {
   if (!args.length) return console.warn("attention, votre log est vide...");

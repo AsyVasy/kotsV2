@@ -1,5 +1,6 @@
 <template>
   <div id="login_icon">
+    <h2 v-if="infos">{{infos.name}}</h2>
     <router-link
       id="icon"
       class="clickable far fa-user"
@@ -18,8 +19,14 @@ export default {
   computed: {
     route() {
       return !auth.isLoggedIn() ? "/login" : "/dashboard/me";
-    }
+    },
+
+    infos() {
+            return this.$store.getters["user/current"]
+        },
   },
+
+
   data() {
     return {
       isHover: false
@@ -31,10 +38,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h2 {
+  float: left;
+  margin-right: 10px;
+  margin-top: 7px
+}
+
 #login_icon {
   display: inline-block;
   height: 32px;
+  border-color: black;
+    color: black;
 }
+
 #icon {
   align-items: center;
   border: 2px solid;

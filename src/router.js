@@ -91,6 +91,12 @@ export default new Router({
     {
       path: "*",
       redirect: "/404"
-    }
+    },
+    {
+      path: "/mentions",
+      name: "mentions",
+      component: () =>
+        import(/* webpackChunkName: "login" */ "./components/Mentions.vue")
+    },
   ]
 });

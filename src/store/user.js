@@ -39,6 +39,7 @@ export default {
           })
           .then(res => {
             auth.setLocalToken(res.data.token);
+            window.localStorage.setItem('user', JSON.stringify(res.data.user));
             context.commit("setUser", res.data.user)
             resolve(res);
           })
@@ -50,7 +51,7 @@ export default {
 
     // getUserLookingFor(ctx, id) {
     //   // console.log("ctx", ctx)
-    //   axios.get(`http://localhost:8080/api/v1/user/${id}`).then(res => {
+    //   axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user/${id}`).then(res => {
     //     ctx.state.userLookingFor = res.data;
     //     // console.log("resuuuult", res.data.$value);
     //   }).catch(err => {

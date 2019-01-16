@@ -37,13 +37,13 @@ export default {
 
     methods: {
         submit() {
-            axios.post("http://localhost:8080/api/v1/message",{
+            axios.post("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/message",{
                 "message" : this.messageToSubmit ,
                 "id_user" : this.infos.id,
                 "id_community" : this.communityHere.id_community
             })
             .then(res => {
-                console.log(res);
+                // console.log(res);
                  
                   this.$store.dispatch("getMessagesByCommunity", this.communityHere.id_community)
             

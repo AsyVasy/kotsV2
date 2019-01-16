@@ -60,7 +60,7 @@
 
             getStats(checking) {
                 var self = this;
-                axios.post('http://localhost:8080/fortnite', {
+                axios.post('http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/fortnite', {
                     pseudo: this.epic.name ,
                     platform: this.epic.platform
                 })
@@ -159,5 +159,71 @@
             }
         }
     };
+
+    @media screen and (max-width: 768px) {
+        .selected {
+       
+        height: 300px;
+        .head {
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            h2 {
+                font-size: 20px;
+                font-family: 'Burbank Big Condensed';
+                color: white;
+            }
+            ul {
+                font-family: 'Burbank Big Condensed';
+                font-size: 18px;
+                width: 400px;
+                color: white;
+                list-style: none;
+                display: flex;
+                justify-content: space-around;
+                background:  rgba(255, 255, 255, 0.502);
+                border-radius: 10px;
+                
+                li {
+                    width: auto;
+                    transition: .5s
+                }
+                li:hover {
+                    cursor: pointer;
+                    background:  rgba(51, 51, 51, 0.839);
+                    transition: .5s
+                }
+
+            }
+        }
+        .stat {
+            ul {
+                list-style: none;
+                font-family: 'Burbank Big Condensed';
+                color: white;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-wrap: wrap;
+                font-size: 20px;
+                height: 220px;;
+                background-color: #663366;
+                margin: 10px 20px 0 20px;
+                
+                li {
+                    transition: .5s;
+                }
+                li:hover {
+                    color: red;
+                    transition: .5s;
+                    cursor: pointer;
+                }        
+            }
+        }
+    };
+
+    }
 </style>
 

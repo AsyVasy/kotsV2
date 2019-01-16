@@ -5,12 +5,18 @@
 
     <div class="alert">
         <h2>Bienvenue sur King Of The Stats !</h2>
-      <div class="global">
-      <div class="text">
-        <p class="intro">Tu aimes avoir un oeil sur tes statistiques lorsque tu joues à Fortnite ? Tu aimes te comparer avec tes amis, tes rivaux ou des joueurs pro ? Crée une communauté dans laquelle tu pourras y ajouter tous les comptes Epic pour avoir un classement de tous les joueurs que tu veux ! Tu peux aussi rejoindre une communauté déjà créee ou simplement la consulter à toi de voir !</p>
+      <!-- <div class="global"> -->
+
+
+      <!-- <div class="text"> -->
+
+        
+        <p class="intro"></p>
+
+
         <router-link class="visibility" to="/login"> Déjà membre ? Clic pour te connecter.</router-link>
         <router-link class="visibility" to="/register"> Pas encore membre ? Clic pour t'enregistrer.</router-link>  
-      </div>
+      <!-- </div> -->
 
 
 
@@ -26,7 +32,7 @@
       </h2>
       </div>
     </div>
-    </div>
+    <!-- </div> -->
      
 
   </section>
@@ -46,22 +52,22 @@ export default {
 
   methods: {
     searchCommu() {
-      console.log(this.commuSearch);
+      // console.log(this.commuSearch);
       var tag = this.commuSearch
             axios            
-            .get(`http://localhost:8080/api/v1/community/hashtag/${tag}`)
+            .get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community/hashtag/${tag}`)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 this.commuFind = res.data;            })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
             }) 
     },
 
     goCommu(commu) {
             
             // this.$ebus.$emit("send-commu", commu)
-            console.log("send commu from dashme");
+            // console.log("send commu from dashme");
             
             var commuName = commu.name
             this.$router.push({name:'dashboard-community', params: {commu: commu, name: commuName }})
@@ -106,12 +112,12 @@ export default {
 
     .alert {
         color: white;
+        height: 90vh;
         // margin: 20px 0px 0px 110px;
         border-radius: 10px;
         background-color: rgba(51, 51, 51, 0.839);
         width: 90vw;
-        height: 90vh;
-        margin-left: 65px;
+        margin: auto;
         margin-top: 10px;
         // overflow: auto;
 
@@ -133,6 +139,8 @@ export default {
         .text {
           display: flex;
           flex-direction: column;
+          
+          flex-wrap: wrap
           
         }
 

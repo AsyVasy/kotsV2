@@ -74,10 +74,10 @@ export default {
 
   methods: {
     searchCommu() {
-      console.log(this.commuSearch);
+      // console.log(this.commuSearch);
       var tag = this.commuSearch
             axios            
-            .get(`http://localhost:8080/api/v1/community/hashtag/${tag}`)
+            .get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community/hashtag/${tag}`)
             .then(res => {
                 console.log(res.data)
                 this.commuFind = res.data;
@@ -86,15 +86,15 @@ export default {
               
               
               })
-            .catch(err => {
-                console.log(err);
-            }) 
+            // .catch(err => {
+            //     console.log(err);
+            // }) 
     },
 
     goCommu(commu) {
             
             // this.$ebus.$emit("send-commu", commu)
-            console.log("send commu from dashme");
+            // console.log("send commu from dashme");
             
             var commuName = commu.name
             this.$router.push({name:'dashboard-community', params: {commu: commu, name: commuName }})
@@ -116,6 +116,8 @@ export default {
   align-items: center;
   justify-content: space-between;
   border-bottom: 2px solid #2c3e50;
+   background: #2c3e50;
+   width: 100vw;
 }
 #logo {
   height: 48px;

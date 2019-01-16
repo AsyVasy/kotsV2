@@ -1,7 +1,7 @@
 import axios from "axios";
 import auth from "./utils/auth";
 
-axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.baseURL = "http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws";
 
 axios.interceptors.request.use(config => {
     // Do something before request is sent...

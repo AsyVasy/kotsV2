@@ -249,7 +249,8 @@
     
                 allTag: [],
     
-                formCommu: false
+                formCommu: false,
+                user: null
     
             }
     
@@ -269,13 +270,13 @@
     
             getEpic() {
     
-                console.log(this.pseudoReSearch)
+                // console.log(this.pseudoReSearch)
     
-                console.log(this.platformResearch)
+                // console.log(this.platformResearch)
     
                 var self = this
     
-                axios.post('http://localhost:8080/fortnite', {
+                axios.post('http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/fortnite', {
     
                         pseudo: this.pseudoReSearch,
     
@@ -285,23 +286,23 @@
     
                     .then(function(response) {
     
-                        console.log(response)
+                        // console.log(response)
     
                         if (response.data.error || response.data === "error") {
     
-                            console.log("Ce profil Epic est introuvable, désolé !")
+                            // console.log("Ce profil Epic est introuvable, désolé !")
     
                             window.alert(`${response.data.epicUserHandle} sur ${response.data.platformName} n'a pas été trouvé.`)
     
-                            console.log(self.infos.id)
+                            // console.log(self.infos.id)
     
                         } else {
     
-                            console.log(response.data.epicUserHandle)
+                            // console.log(response.data.epicUserHandle)
     
-                            console.log(response.data.platformName)
+                            // console.log(response.data.platformName)
     
-                            axios.post('http://localhost:8080/api/v1/compte_associe', {
+                            axios.post('http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/compte_associe', {
     
                                 "id_user": self.infos.id,
     
@@ -341,11 +342,11 @@
     
                 axios
     
-                    .get(`http://localhost:8080/api/v1/community/name/${name}`)
+                    .get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community/name/${name}`)
     
                     .then(res => {
     
-                        console.log(res.data[0])
+                        // console.log(res.data[0])
     
                         this.commuFind = res.data[0];
     
@@ -353,7 +354,7 @@
     
                     .catch(err => {
     
-                        console.log(err);
+                        // console.log(err);
     
                     })
     
@@ -363,11 +364,11 @@
     
             addCommuFind() {
     
-                console.log(this.commuFind)
+                // console.log(this.commuFind)
     
                 axios
     
-                    .post("http://localhost:8080/api/v1/user_registered_community", {
+                    .post("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community", {
     
                         "id_user": this.infos.id,
     
@@ -377,21 +378,21 @@
     
                     .then(res => {
     
-                        console.log(res)
+                        // console.log(res)
     
                         window.alert(`Vous faites maintenant parti de la communauté ${this.commuFind.name} ! Montrez leur qui est le boss..`);
 
                         
                         
-                        axios.get(`http://localhost:8080/api/v1/user_registered_community/${this.infos.id}`).then(res => {
+                        axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community/${this.infos.id}`).then(res => {
                 
                             this.communitiesOfUser = res.data;
                 
-                            console.log("communitiesOfUser", res);
+                            console.log("communitiesOf:User", res);
                 
                         }).catch(err => {
                 
-                            console.log(err);
+                            // console.log(err);
                 
                         });
 
@@ -422,18 +423,12 @@
     
                 // this.$ebus.$emit("send-commu", commu)
     
-                console.log("send commu from dashme");
+                // console.log("send commu from dashme");
     
         
                 var commuName = commu.name
     
-                this.$router.push({
-    
-                    name: 'dashboard-community',
-    
-                    params: {
-    
-                        commu: commu,
+                this.$router.push({ name: 'dashboard-community', params: { commu: commu,
     
                         name: commuName
     
@@ -447,7 +442,7 @@
     
             addTag() {
     
-                console.log("addTag");
+                // console.log("addTag");
     
                 this.allTag.push(this.hashtag)
     
@@ -456,26 +451,26 @@
                 console.log("newCommunity");
 
 
-                axios.post("http://localhost:8080/api/v1/community",{
+                axios.post("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community",{
                     "name" : this.commuCreate,
                     "user_id" : this.infos.id
                 })
                 .then(
-                    axios.get(`http://localhost:8080/api/v1/community/name/${this.commuCreate}`)
+                    axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community/name/${this.commuCreate}`)
                     .then(res => {
-                        console.log(res.data[0])
+                        // console.log(res.data[0])
                         var commuFind = res.data[0];
                         
-                        axios.post("http://localhost:8080/api/v1/user_registered_community", {
+                        axios.post("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community", {
                             "id_user": this.infos.id,
                             "id_community": commuFind.id_community
                         })
                         .then(res => {
-                            console.log(res);                      
-                            axios.get(`http://localhost:8080/api/v1/user_registered_community/${this.infos.id}`)
+                            // console.log(res);                      
+                            axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community/${this.infos.id}`)
                             .then(res => {
                                 this.communitiesOfUser = res.data;
-                                console.log("communitiesOfUser", res);
+                                // console.log("communitiesOfUser", res);
                             })
                         })
                     })
@@ -520,11 +515,11 @@
     
         computed: {
     
-            infos() {
+            // infos() {
     
-                return this.$store.getters["user/current"]
+            //     return this.$store.getters["user/current"]
     
-            },
+            // },
     
     
     
@@ -550,17 +545,17 @@
     
         created() {
     
+            this.infos = JSON.parse(window.localStorage.getItem('user'))
     
-    
-            axios.get(`http://localhost:8080/api/v1/compte_associe/user/${this.infos.id}`).then(res => {
+            axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/compte_associe/user/${this.infos.id}`).then(res => {
     
                 this.compte_associeUser = res.data;
     
-                console.log("compte_associeUser", res.data);
+                // console.log("compte_associeUser", res.data);
     
             }).catch(err => {
     
-                console.log(err);
+                // console.log(err);
     
             })
     
@@ -568,15 +563,15 @@
     
             
     
-            axios.get(`http://localhost:8080/api/v1/user_registered_community/${this.infos.id}`).then(res => {
+            axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community/${this.infos.id}`).then(res => {
     
                 this.communitiesOfUser = res.data;
     
-                console.log("communitiesOfUser", res);
+                // console.log("communitiesOfUser", res);
     
             }).catch(err => {
     
-                console.log(err);
+                // console.log(err);
     
             });
     
@@ -584,7 +579,7 @@
     
             // axios
     
-            // .get(`http://localhost:8080/api/v1/community/${this.community.id}`)
+            // .get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community/${this.community.id}`)
     
             // .then(res => {
     
@@ -598,7 +593,7 @@
     
     
     
-            // axios.get(`http://localhost:8080/api/v1/user_registered_community/${this.infos.id}`).then(res => {
+            // axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community/${this.infos.id}`).then(res => {
     
             //  var communitiesOfUser = [res.data];
     
@@ -608,7 +603,7 @@
     
             //     axios
     
-            //         .get(`http://localhost:8080/api/v1/community/${this.community.id}`)
+            //         .get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community/${this.community.id}`)
     
             //         .then(res => {
     

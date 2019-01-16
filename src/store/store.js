@@ -69,7 +69,7 @@ export default new Vuex.Store({
   
     getUsers(ctx) {
       // console.log("ctx", ctx)
-      axios.get("http://localhost:8080/api/v1/user").then(res => {
+      axios.get("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user").then(res => {
         ctx.state.users = res.data[1];
         // console.log("resuuuult", res.data[1]);
       }).catch(err => {
@@ -79,7 +79,7 @@ export default new Vuex.Store({
 
     // getcommunity(ctx) {
     //   // console.log("ctx", ctx)
-    //   axios.get("http://localhost:8080/api/v1/community").then(res => {
+    //   axios.get("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community").then(res => {
     //     ctx.state.community = res;
     //     // console.log("resuuuult", res);
     //   }).catch(err => {
@@ -89,7 +89,7 @@ export default new Vuex.Store({
 
     // getMessages(ctx) {
     //   // console.log("ctx", ctx)
-    //   axios.get("http://localhost:8080/api/v1/message").then(res => {
+    //   axios.get("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/message").then(res => {
     //     ctx.state.messages = res.data[1];
     //     // console.log("resuuuult", res.data[1]);
     //   }).catch(err => {
@@ -99,7 +99,7 @@ export default new Vuex.Store({
 
     // getCompte_associe(ctx) {
     //   // console.log("ctx", ctx)
-    //   axios.get("http://localhost:8080/api/v1/compte_associe").then(res => {
+    //   axios.get("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/compte_associe").then(res => {
     //     ctx.state.compte_associe = res.data;
     //     // console.log("resuuuult", res);
     //   }).catch(err => {
@@ -111,7 +111,7 @@ export default new Vuex.Store({
 
     getHashtag(ctx) {
       // console.log("ctx", ctx)
-      axios.get("http://localhost:8080/api/v1/hashtag").then(res => {
+      axios.get("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/hashtag").then(res => {
         ctx.state.hashtag = res;
         // console.log("resuuuult", res);
       }).catch(err => {
@@ -121,7 +121,7 @@ export default new Vuex.Store({
 
     // getUser_registered_community(ctx) {
     //   // console.log("ctx", ctx)
-    //   axios.get("http://localhost:8080/api/v1/user_registered_community").then(res => {
+    //   axios.get("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community").then(res => {
     //     ctx.state.user_registered_community = res.data[1];
     //     // console.log("resuuuult", res);
     //   }).catch(err => {
@@ -130,7 +130,7 @@ export default new Vuex.Store({
     // },
     getCommunity_has_epic(ctx) {
       // console.log("ctx", ctx)
-      axios.get("http://localhost:8080/api/v1/community_has_epic").then(res => {
+      axios.get("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community_has_epic").then(res => {
         ctx.state.community_has_epic = res.data[1];
         // console.log("resuuuult", res);
       }).catch(err => {

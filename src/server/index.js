@@ -51,6 +51,12 @@ app.get("/", (req, res) => {
     res.send("root@my-api");
 });
 
+app.get("/", function(req, res) {
+  app.locals.site.activeRoute = req.originalUrl;
+  res.render("index", {nom: "kots"});
+  // on passe un objet ({nom: "gui"}) à la vue, utilisable dans le template EJS
+});
+
 console.log("node server running @ http://localhost:" + port);
 
 app.listen(port);

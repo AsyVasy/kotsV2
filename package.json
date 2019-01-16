@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "server": "forever --minUptime 1000 --spinSleepTime 1000 -w -v -f src/server/index.js",
-    "client": "vue-cli-service serve",
+    "client": "vue-cli-service serve --port 3000",
     "serve": "npm run client & npm run server",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",

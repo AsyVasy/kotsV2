@@ -30,7 +30,7 @@ export default {
    
     getcommunity(ctx) {
         // console.log("ctx", ctx)
-        axios.get("http://localhost:8080/api/v1/community").then(res => {
+        axios.get("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community").then(res => {
           ctx.state.community = res;
           // console.log("resuuuult", res);
         }).catch(err => {
@@ -47,7 +47,7 @@ export default {
       //   return new Promise((resolve, reject) => {
           
       //     axios
-      //     .post("http://localhost:8080/api/v1/compte_associe/:id", {
+      //     .post("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/compte_associe/:id", {
       //       user
       //     })
       //     .then(res => {

@@ -21,7 +21,7 @@
                 </tr>
             </tbody>
         </table>
-        <button @click="toto">TEST</button>
+        <!-- <button @click="toto">TEST</button> -->
     </div>
 </template>
 
@@ -42,13 +42,13 @@
         props: ['communityHere'],
         methods: {
 
-            toto() {
-                console.log(this.communityHere)
-            },
+            // toto() {
+            //     console.log(this.communityHere)
+            // },
 
-            test(epic) {
-                console.log(this.getStats(epic).stat)
-            },
+            // test(epic) {
+            //     console.log(this.getStats(epic).stat)
+            // },
             setUser(profil) {
                 // console.log(user);
                 this.$ebus.$emit("send-profil", profil)
@@ -123,6 +123,7 @@
         width: 400px;
         height: 620px;
         max-height: 645px;
+        margin-bottom: 1rem;
         overflow: auto;
 
 
@@ -138,7 +139,7 @@
 
 
         table {
-
+            
             margin-top: 25px;
             width: 100%;
             th {
@@ -149,6 +150,7 @@
             }
             tr {
                 tbody {
+        overflow: auto;
 
                     display: flex;
                     justify-content: space-evenly;
@@ -217,6 +219,120 @@
                 
         }
     };
+
+
+     @media screen and (max-width: 768px) { 
+
+         .commu {
+        color: white;
+        // margin: 20px 0px 0px 110px;
+        border-radius: 10px;
+        background-color: rgba(51, 51, 51, 0.839);
+        width: 400px;
+        height: 620px;
+        max-height: 645px;
+        // overflow: auto;
+
+
+
+        
+        h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+            font-family: 'Burbank Big Condensed'
+        }
+
+
+
+
+        table {
+
+            margin-top: 25px;
+            width: 100%;
+            th {
+                
+                font-family: 'Burbank Big Condensed';
+                font-size: 15px
+
+            }
+            tr {
+                tbody {
+
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    width: 100%;
+
+                }
+                td {
+                    line-height: 35px;
+                    padding: 3px;
+                    transition: .3s
+                    }
+                // td:hover {
+                //     border: 3px solid #ffff00;
+                // border-radius: 10px;
+                // padding: 0px;
+                // cursor: pointer;
+                // }
+            }
+            
+
+            tbody > tr:nth-child(1) > td:nth-child(1) {
+                background: #cc9900;
+            }
+            tbody > tr:nth-child(2) > td:nth-child(1) {
+                background: #993399;
+            }
+            tbody > tr:nth-child(3) > td:nth-child(1) {
+                background: #008080;
+
+            }
+            tbody > tr:nth-child(4) > td:nth-child(1) {
+                background: #339900;
+
+            }
+            tbody > tr:nth-child(n + 5) > td:nth-child(1) {
+                background: #808099;
+
+            }
+            
+            
+            tbody > tr:nth-child(n + 1) > td:nth-child(1) {
+                font-family: 'Burbank Big Condensed';
+                font-size: 15px
+
+            }
+
+
+
+
+            tbody > tr > td:nth-child(n + 3) {
+                border-left: 1px solid rgba($color: white, $alpha: 0.5);
+            }
+
+
+
+            tbody > tr > td:nth-child(2):hover {
+                border: 3px solid #ffff00;
+                border-radius: 10px;
+                padding: 0px;
+                cursor: pointer;
+                transition: .3s;
+
+
+            }
+
+            .board {
+                font-size: 11px;
+                
+            }
+                
+        }
+    };
+
+
+     }
 </style>
 
 

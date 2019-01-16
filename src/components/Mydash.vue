@@ -3,11 +3,11 @@
       <div class="tab">
         <Community class="community" v-bind:communityHere='this.$route.params.commu'></Community>
       
+        <Selected class="select"></Selected>
     
           <Chat class="chat" v-bind:communityHere='this.$route.params.commu'></Chat> 
           <!-- <Profil class="profil" ></Profil> -->
 
-        <Selected class="select"></Selected>
 
 </div>
 
@@ -18,22 +18,22 @@
 <script>
 import Community from '@/components/Community.vue'
 import Chat from '@/components/Chat.vue'
-import Profil from '@/components/Profil.vue'
+// import Profil from '@/components/Profil.vue'
 import Selected from '@/components/Selected.vue'
 export default {
   components: {
     Community,
     Chat,
-    Profil,
+    // Profil,
     Selected,
   },
 
 
-  methods: {
-    coucou() {
-      console.log(this.$route.params.commu)
-    }
-  },
+  // methods: {
+  //   coucou() {
+  //     console.log(this.$route.params.commu)
+  //   }
+  // },
   
 }
 </script>
@@ -97,6 +97,22 @@ export default {
   // left: 700px
     // margin: 50px
 
+}
+
+@media screen and (max-width: 768px) {
+  #app {
+    .community {
+      margin-top: 1rem;
+      width: 300px
+    }
+    .selected {
+      width: 300px
+    }
+
+    .chat {
+      margin-bottom: 1rem
+    }
+  }
 }
 
 

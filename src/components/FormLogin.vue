@@ -7,6 +7,7 @@
       <input
         type="email"
         name="mail"
+        placeholder="email"
         v-model="user.mail"
         class="input"
         :class="{warning: !user.mail.length}"
@@ -14,11 +15,12 @@
       <input
         type="password"
         name="password"
+        placeholder="mot de passe"
         v-model="user.password"
         class="input"
         :class="{warning: !user.password.length}"
       >
-      <button @click="login($event)" class="btn">log in</button>
+      <button @click="login($event)" class="btn">Se connecter</button>
     </form>
   </div>
 </template>
@@ -94,6 +96,9 @@ export default {
 <style scoped lang="scss">
 #form {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    width: 100%
 }
 </style>

@@ -58,7 +58,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+#dashboard {
+  padding: 0
+}
 @media screen and (max-width:960px) {
 
 #nav_dashboard {

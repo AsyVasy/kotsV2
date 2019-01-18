@@ -8,76 +8,36 @@
             <ul class="sub">
                 <li><h3>{{infos.name}}</h3></li>
                 <!-- <li><h3>{{infos.create_time}}</h3></li> -->
+
+
                 <li><input type="text" placeholder="Ajouter une communauté" v-model="commuSearch">
                     <button @click="getCommu"><img class="loupe" src="./../assets/search-solid.svg" alt=""></button></li>
-                <li v-if="commuFind">{{commuFind.name}} <button @click="addCommuFind">Ajouté</button><button @click="resetCommuFind">Annulax</button></li>
+
+                <li v-if="commuFind">{{commuFind.name}} <button @click="addCommuFind(commuFind)">Ajouté</button><button @click="resetCommuFind">Annulax</button></li>
+
+
                 <li><button @click="formNewCommu" v-if=" formCommu ? buttonForm = 'Annulax' : buttonForm = 'Créer une communauté' ">{{buttonForm}}</button></li>
-                <li v-if="formCommu" class="commuCreate"><h2>Création d'une nouvelle communauté: </h2></li>
-                <li v-if="formCommu"><input type="text" v-model="commuCreate" placeholder="NOM"></li>
-                <li v-if="formCommu"><input type="text" v-model="hashtag" placeholder="ajouter un tag"><button @click="addTag">+</button></li>
-                <!-- <li v-if="formCommu"> <button @click="addTag">+</button></li> -->
-                <!-- <li v-if="formCommu"><h3>Nom: {{commuCreate}}</h3></li> -->
-                <li v-if="formCommu"> <h3>Hashtag:</h3></li>
-                <li  v-for="(tag, n) in allTag" :key="n">>#{{tag}} <button @click="deleteTag(n)">X</button></li>
-                <li v-if="formCommu"><button @click="newCommunity">Créer {{commuCreate}}</button></li>
+                <li v-if="formCommu" class="commuCreate">
+                     <form id="form" ref="form" @submit="$event.preventDefault()">
+                        <h2>Création d'une nouvelle communauté: </h2>
+                        <input type="text" v-model="commuCreate" placeholder="NOM">
+                        <input type="text" v-model="hashtag" placeholder="ajouter un tag"><button @click="addTag">+</button>
+                        <h3>Hashtag:</h3>
+                        <ul>
+                          <li  v-for="(tag, n) in allTag" :key="n">>#{{tag}} <button @click="deleteTag(n)">X</button></li>  
+                        </ul>
+                        <button @click="newCommunity($event)">Créer {{commuCreate}}</button>
+                    </form>
+                    </li>
             </ul>
          </li>
+    
+      
 
 
-<!-- <button @click="formNewCommu" v-if=" formCommu ? buttonForm = 'Annulax' : buttonForm = 'Créer une communauté' ">{{buttonForm}}</button> -->
-    
-    
-    
-        <!-- <div v-if="formCommu" class="commuCreate">
-    
-            <h2>Création d'une nouvelle communauté: </h2>
-    
-    
-    
-            <input type="text" v-model="commuCreate" placeholder="NOM">
-    
-            <input type="text" v-model="hashtag" placeholder="ajouter un tag">
-    
-            <button @click="addTag">+</button>
-    
-            <h3>Nom: {{commuCreate}}</h3>
-    
-            <h3>Hashtag:</h3>
-    
-            <ul v-for="(tag, n) in allTag" :key="n">
-    
-                <li>#{{tag}} <button @click="deleteTag(n)">X</button> </li>
-    
-            </ul>
-    
-            <button @click="newCommunity">Nouvelle commu</button>
-    
-    
-    
-        </div> -->
-    
-        
-
-
-<!--  fin accordeon-->
-  <!-- <div class="myInfo">
-    
-            <h2 class="title ">MES INFOS</h2>
-    
-            <input type="checkbox" class="check">
-    
-            <div class="list">
-
-                <ul>
-                    
-                </ul>
-                
-            </div>
-    
-        </div> -->
 
         <li class="has-sub">
-            <label for="menu2">MES COMMUNAUTES</label><input id="menu2" name="menu" type="checkbox" />
+            <label for="menu2">MES COMMUNAUTES</label><input @click="test" id="menu2" name="menu" type="checkbox" />
             <ul class="sub" >
                 <!-- <li>me: {{community.id_user}}</li> -->
                 <li v-for="(community, o) in communitiesOfUser" :key="'A'+o" @click="goCommu(community)"><h3>{{community.name}}</h3></li>
@@ -88,20 +48,6 @@
         
 
 
-  <!-- <div class="myCommu">
-            <input type="checkbox" class="check">
-            <h2>MES COMMUNAUTES</h2>
-            <div class="list">
-                <ul v-for="(community, o) in communitiesOfUser" :key="'A'+o" @click="goCommu(community)">
-                    <li>me: {{community.id_user}}</li>
-                    <li>
-                        <h3>{{community.name}}</h3>
-                    </li>
-                    <li>id community: {{community.id_community}}</li> 
-                    <li>id creator: {{community.user_id}}</li>
-                </ul>
-            </div>
-        </div>   -->
   
         <li class="has-sub">
             <label for="menu3">MES COMPTES EPIC</label><input id="menu3" name="menu" type="checkbox" />
@@ -111,107 +57,14 @@
         </li>
         </ul>
 
-
-        <!-- <div class="myEpic">
-            <input type="checkbox" class="check">
-            <h2>MES COMPTES EPIC</h2>
-            <div class="list">
-                <ul v-for="(compte, m) in compte_associeUser" :key="'B'+m">
-                    <li>
-                        <hr>
-                    </li>
-                    <li>
-                        <h3>{{compte.ca_name}} sur {{compte.platform}}</h3>
-                    </li>
-                    <li>
-                        <h3>Communauté: {{compte.name}}</h3>
-                    </li>
-                    <li>
-                        <hr>
-                    </li>
-                </ul>
-            </div>
-        </div> -->
-    
-    
-        
-     
-    
-    
-    
-    
-        
-<!--     
-        <br>
-    
-        <hr>
-    
-    
-    
-    
-     -->
-    
-    
-    
-    
-    
-    
-    
-    
-        <!-- FORMULAIRE DE CREATION D'UNE NOUVELLE COMMUNAUTE -->
-    
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
         <!-- <input type="text" placeholder="pseudo" v-model="pseudoReSearch">
-    
         <select name="plateforme" id="plateforme" v-model="platformResearch">
-    
-        
-    
-                        <option value="pc">PC</option>
-    
-        
-    
+                        <option value="pc">PC</option>    
                         <option value="psn">PS4</option>
-    
-        
-    
                         <option value="xb1">XBOX ONE</option>
-    
-        
-    
                     </select>
-    
         <button @click="getEpic">EPIC</button> -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     </div>
 </template>
@@ -219,255 +72,162 @@
 <script>
     import axios from 'axios'
     
-    
-    
-    
-    
     export default {
-    
-    
     
         data() {
     
             return {
     
                 compte_associeUser: {},
-    
                 communitiesOfUser: {},
-    
                 platformResearch: null,
-    
                 pseudoReSearch: null,
-    
                 commuSearch: null,
-    
                 commuFind: null,
-    
                 commuCreate: null,
-    
                 hashtag: null,
-    
                 allTag: [],
-    
                 formCommu: false,
                 user: null
     
             }
-    
         },
     
-    
-    
         methods: {
-    
-    
-    
-    
-    
-    
-    
+            test() {
+                axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community/${this.infos.id}`).then(res => {
+                this.communitiesOfUser = res.data;
+                // console.log("communitiesOfUser", res);
+            }).catch(err => {
+                console.log(err);
+            });
+                console.log(this.communitiesOfUser)
+            },
             //Rechercher puis ajouter un compte epic
     
             getEpic() {
-    
                 // console.log(this.pseudoReSearch)
-    
                 // console.log(this.platformResearch)
-    
                 var self = this
-    
                 axios.post('http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/fortnite', {
-    
                         pseudo: this.pseudoReSearch,
-    
                         platform: this.platformResearch
-    
                     })
-    
                     .then(function(response) {
-    
                         // console.log(response)
-    
                         if (response.data.error || response.data === "error") {
-    
                             // console.log("Ce profil Epic est introuvable, désolé !")
-    
                             window.alert(`${response.data.epicUserHandle} sur ${response.data.platformName} n'a pas été trouvé.`)
-    
                             // console.log(self.infos.id)
-    
                         } else {
-    
                             // console.log(response.data.epicUserHandle)
-    
                             // console.log(response.data.platformName)
-    
                             axios.post('http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/compte_associe', {
-    
                                 "id_user": self.infos.id,
-    
                                 "id_community": 1,
-    
                                 "name": response.data.epicUserHandle,
-    
                                 "platform": response.data.platformName
-    
                             })
-    
                             window.alert(`${response.data.epicUserHandle} sur ${response.data.platformName} a été ajouté.`)
-    
                         }
-    
                     })
     
             },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
             //COMMU
     
             getCommu() {
-    
                 var name = this.commuSearch
-    
                 axios
-    
                     .get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community/name/${name}`)
-    
                     .then(res => {
-    
-                        // console.log(res.data[0])
-    
+                        console.log(res.data[0])
                         this.commuFind = res.data[0];
-    
                     })
-    
                     .catch(err => {
-    
-                        // console.log(err);
-    
+                        console.log(err);
                     })
-    
             },
     
     
-    
-            addCommuFind() {
-    
+            
+            addCommuFind(commu) {
                 // console.log(this.commuFind)
-    
                 axios
-    
-                    .post("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community", {
-    
+                    .post("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community", {    //enregistrement de l user dans la communauté
                         "id_user": this.infos.id,
-    
-                        "id_community": this.commuFind.id_community
-    
+                        "id_community": commu.id_community
                     })
-    
                     .then(res => {
-    
-                        // console.log(res)
-    
-                        window.alert(`Vous faites maintenant parti de la communauté ${this.commuFind.name} ! Montrez leur qui est le boss..`);
-
-                        
-                        
+                        console.log(res)
+                        window.alert(`Vous faites maintenant parti de la communauté ${commu.name} ! Montrez leur qui est le boss..`);
                         axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community/${this.infos.id}`).then(res => {
-                
-                            this.communitiesOfUser = res.data;
-                
-                            console.log("communitiesOf:User", res);
-                
-                        }).catch(err => {
-                
-                            // console.log(err);
-                
-                        });
-
-                        this.resetCommuFind()
-
-                                    
-    
-    
-                    })
-    
+                        this.communitiesOfUser = res.data;
+                        // console.log("communitiesOfUser", res);
+                    }).catch(err => {
+                        console.log(err);
+                    });
+                    this.resetCommuFind()
+                })
             },
-    
     
     
             resetCommuFind() {
-    
                 this.commuFind = null
-    
             },
     
-    
-    
-    
-    
+
             goCommu(commu) {
-    
-    
-    
                 // this.$ebus.$emit("send-commu", commu)
-    
                 // console.log("send commu from dashme");
-    
-        
                 var commuName = commu.name
-    
-                this.$router.push({ name: 'dashboard-community', params: { commu: commu,
-    
-                        name: commuName
-    
-                    }
-    
+                this.$router.push({ name: 'dashboard-community', params: { commu: commu, name: commuName }
                 })
-    
             },
-    
     
     
             addTag() {
-    
                 // console.log("addTag");
-    
                 this.allTag.push(this.hashtag)
-    
             },
-            newCommunity() {    
+
+
+            newCommunity(evt) {    
                 console.log("newCommunity");
+                console.log(evt);
 
 
                 axios.post("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community",{
                     "name" : this.commuCreate,
                     "user_id" : this.infos.id
                 })
+
+
                 .then(
                     axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community/name/${this.commuCreate}`)
+
                     .then(res => {
-                        // console.log(res.data[0])
                         var commuFind = res.data[0];
+                        console.log("commuFind ->",  res.data[0])
+                        axios.post(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/hashtag`, {"name" : commuFind.name })
+                        axios.post(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community_has_hashtag`, {"id_community" : commuFind.id_community , "hashtag" : commuFind.name })
                         
+                        if (this.allTag) {
+                            this.allTag.forEach(tag => {
+                                axios.post(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/hashtag`, {"name" : tag})
+                                axios.post(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/community_has_hashtag`, {"id_community" : commuFind.id_community , "hashtag" : tag })
+                            });
+                        }
                         axios.post("http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community", {
                             "id_user": this.infos.id,
                             "id_community": commuFind.id_community
                         })
+                        
                         .then(res => {
-                            // console.log(res);                      
+                            console.log(res);                      
                             axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community/${this.infos.id}`)
+                            
                             .then(res => {
                                 this.communitiesOfUser = res.data;
                                 // console.log("communitiesOfUser", res);
@@ -514,65 +274,36 @@
     
     
         computed: {
-    
+
             // infos() {
-    
             //     return this.$store.getters["user/current"]
-    
             // },
     
-    
-    
             compte_associeCurrentUser() {
-    
                 return this.$store.getters["compte_associe/displayCompte_associeUser"]
-    
             },
     
-    
-    
             communitiesCurrentUser() {
-    
                 return this.$store.getters["user_registered_community/displayUser_registeredByUser"]
-    
             }
-    
-    
-    
         },
     
-    
-    
+        
         created() {
-    
             this.infos = JSON.parse(window.localStorage.getItem('user'))
-    
             axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/compte_associe/user/${this.infos.id}`).then(res => {
-    
                 this.compte_associeUser = res.data;
-    
                 // console.log("compte_associeUser", res.data);
-    
             }).catch(err => {
-    
-                // console.log(err);
-    
+                console.log(err);
             })
     
     
-    
-            
-    
             axios.get(`http://dd6694207e094518a1d100f5b2317a08.testmyurl.ws/api/v1/user_registered_community/${this.infos.id}`).then(res => {
-    
                 this.communitiesOfUser = res.data;
-    
                 // console.log("communitiesOfUser", res);
-    
             }).catch(err => {
-    
-                // console.log(err);
-    
+                console.log(err);
             });
     
     
@@ -627,6 +358,11 @@
 </script>
 
 <style lang="scss" scoped>
+
+     .accordion input:checked  + ul.sub > li.commuCreate {
+        height: auto;
+    }
+
     /* width */    
      ::-webkit-scrollbar {
         width: 10px;

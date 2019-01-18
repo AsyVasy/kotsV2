@@ -14,19 +14,20 @@
         <p class="intro"></p>
 
 
-        <router-link class="visibility" to="/login"> Déjà membre ? Clic pour te connecter.</router-link>
-        <router-link class="visibility" to="/register"> Pas encore membre ? Clic pour t'enregistrer.</router-link>  
+        <router-link style="color: white" class="visibility" to="/login"> Déjà membre ? Clic pour te connecter.</router-link>
+        <br>
+        <router-link style="color: white" class="visibility" to="/register"> Pas encore membre ? Clic pour t'enregistrer.</router-link>  
       <!-- </div> -->
 
 
-
+  <br><hr>
       <div class="search">
         <h3>Rechercher une communauté: </h3>
        <input type="search"  v-model="commuSearch">
         <button type="submit" @click="searchCommu"><i class="fa fa-search"></i></button>
       <h2 v-if="commuFind">
-        <ul v-for="(commu, n) in commuFind" :key="n">
-          <li class="clicable" @click="goCommu(commu)">{{commu.name}}
+        <ul >
+          <li v-for="(commu, n) in commuFind" :key="n" class="clicable" @click="goCommu(commu)">{{commu.name}}
           </li>
         </ul>
       </h2>
@@ -104,11 +105,7 @@ export default {
 
 #app {
     width: 100vw;
-    
     background: linear-gradient(rgba(102, 0, 255, 0.9), rgb(204, 0, 255));
-
-
-    
 
     .alert {
         color: white;
@@ -129,57 +126,94 @@ export default {
           
         }
 
-    .global {
-        margin-top: 100px;
-        display: flex;
-        justify-content: space-evenly;
+        .visibility {
+           font-family: 'Burbank Big Condensed';
+          font-size: 18px;
+          color: white
+        }
+
+         .search {
+          ul {
+            list-style: none;
+            margin-top: 1rem
+          }
+        }
+      
+       .clicable {
+         font-size: 25px
+       }
+       .clicable:hover {
+            cursor: pointer;
+            color: #7619FF;
+            background: rgba( 7, 7, 7, 0.5);
+            transition: .5s;
+          }
+
+
+
+
+
+
+    // .global {
+    //     margin-top: 100px;
+    //     display: flex;
+    //     justify-content: space-evenly;
         
 
 
-        .text {
-          display: flex;
-          flex-direction: column;
+    //     .text {
+    //       display: flex;
+    //       flex-direction: column;
           
-          flex-wrap: wrap
+    //       flex-wrap: wrap
           
-        }
+    //     }
 
-        .search {
-          ul {
-            list-style: none;
-          }
-        }
+        // .search {
+        //   ul {
+        //     list-style: none;
+        //   }
+        // }
 
 
-        .clicable:hover {
-          cursor: pointer;
-          color: #7619FF;
-          background: rgba( 7, 7, 7, 0.5);
-          transition: .5s
-        }
-        .intro {
-          width: 450px;
-          font-size: px;
-          margin-bottom: 40px
-        }
+      //     .clicable:hover {
+      //       cursor: pointer;
+      //       color: #7619FF;
+      //       background: rgba( 7, 7, 7, 0.5);
+      //       transition: .5s
+      //     }
+    //     .intro {
+    //       width: 450px;
+    //       font-size: px;
+    //       margin-bottom: 40px
+    //     }
 
-        input {
-          width: auto;
+    //     input {
+    //       width: auto;
           
-        }
+    //     }
 
-       .visibility {
-           font-family: 'Burbank Big Condensed';
-          font-size: 30px;
-          color: white
-        }
+      //  div.alerte > .visibility {
+      //      font-family: 'Burbank Big Condensed';
+      //     font-size: 80px;
+      //     color: white
+      //   }
     
     
-    }
+    // }
 
 
     }
  
+  }
+
+  @media screen and (max-width: 768px) {
+
+h2 {
+  font-size: 20px
+}
+
+    
   }
 
 
